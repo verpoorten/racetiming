@@ -1,0 +1,113 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-28\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "female"
+msgstr "Féminin"
+
+msgid "male"
+msgstr "Masculin"
+
+msgid "lastname"
+msgstr "Nom"
+
+msgid "firstname"
+msgstr "Prénom"
+
+msgid "add"
+msgstr "Ajouter"
+
+msgid "save"
+msgstr "Enregistrer"
+
+msgid "update"
+msgstr "Editer"
+
+msgid "runner"
+msgstr "Coureur"
+
+msgid "runners"
+msgstr "Coureurs"
+
+msgid "categories"
+msgstr "Catégories"
+
+msgid "category"
+msgstr "Catégorie"
+
+msgid "ranking"
+msgstr "Classement"
+
+msgid "number"
+msgstr "Numéro de dossard"
+
+msgid "enter_number"
+msgstr "Introduire le numéro de dossard du coureur qui arrive"
+
+msgid "duplicated"
+msgstr "Attention dossard encodé 2 fois"
+
+msgid "checkin"
+msgstr "Arrivée"
+
+msgid "general_ranking"
+msgstr "Classement général"
+
+msgid "category_ranking"
+msgstr "Classement par catégorie"
+
+msgid "list"
+msgstr "Liste"
+
+msgid "date"
+msgstr "Date de la course"
+
+msgid "time"
+msgstr "Heure de départ"
+
+msgid "races"
+msgstr "Courses"
+
+msgid "ranking_update"
+msgstr "Encodage classement"
+
+msgid "race"
+msgstr "Course"
+
+msgid "kilometers"
+msgstr "Kms"
+
+msgid "miles"
+msgstr "Miles"
+
+msgid "desc_application"
+msgstr "Course(s) active(s) pour le moment"
+
+msgid "unexisting_runner"
+msgstr "Dossard inconnu"
+
+msgid "label"
+msgstr "Libellé"
+
+msgid "start"
+msgstr "Début"
+
+msgid "end"
+msgstr "Fin"
+
+msgid "gender"
+msgstr "Genre"

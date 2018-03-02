@@ -1,0 +1,162 @@
+<!doctype html>
+{% load staticfiles %}
+{% load i18n %}
+
+{% comment "License" %}
+* Racetiming is an application designed to manage ranking during running
+* competition.
+*
+* Copyright (C) 2018 Leïla Verpoorten
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* A copy of this license - GNU General Public License - is available
+* at the root of the source code of this program.  If not,
+* see http://www.gnu.org/licenses/.
+{% endcomment %}
+
+
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>RaceTiming</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}"/>
+    <link rel="stylesheet" href="{% static 'css/armata.css' %}" type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}?version={{ js }}">
+    <link rel="stylesheet" href="{% static 'css/osis.css' %}?version={{ js }}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tree.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jstree.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dataTables.bootstrap.min.css' %}">
+    {% block header %}
+
+    {% endblock %}
+    {% block style %}
+    {% endblock style %}
+    <style>
+        #alert_wrong_version {
+            display: none;
+        }
+        body {
+            font-family: 'Armata', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'home' %}" id="lnk_home"><img
+                        src="{% static 'img/logo.ico' %}" style="margin-top: -10px;height:40px;"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false"
+                           id="lnk_home_dropdown_runners">{% trans 'races' %}<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'race_list' %}"
+                                   id="lnk_dropdown_race_list">{% trans 'list'%}</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false"
+                           id="lnk_home_dropdown_runners">{% trans 'runners' %}<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'runner_list' %}"
+                                   id="lnk_dropdown_runner_list">{% trans 'list'%}</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false"
+                           id="lnk_home_dropdown_runners">{% trans 'ranking_update' %}<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+
+                            <li><a href="{% url 'ranking' %}"
+                                   id="lnk_dropdown_ranking">{% trans 'ranking'%}</a></li>
+                            <li><a href="{% url 'podium' %}"
+                                   id="lnk_dropdown_podium">{% trans 'podium'%}</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false"
+                           id="lnk_home_dropdown_runners">{% trans 'categories' %}<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'category_list' %}"
+                                   id="lnk_dropdown_category_list">{% trans 'list'%}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <p class="navbar-text pull-right"><span class="glyphicon glyphicon-copyright-mark"></span>  {% now "Y" %}  </p>
+        </div>
+    </nav>
+
+    <script src="{% static "js/jquery-2.1.4.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/custom.js" %}"></script>
+    <script src="{% static "js/location.js" %}"></script>
+    <script src="{% static "js/personne.js" %}"></script>
+    <script src="{% static "js/societe.js" %}"></script>
+    <script src="{% static "js/suivi.js" %}"></script>
+    <script src="{% static "js/alerte.js" %}"></script>
+    <script src="{% static "js/jquery.dataTables.min.js" %}"></script>
+    <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'js/locales/bootstrap-datepicker.fr.js' %}"></script>
+    <script src="{% static "js/customComboBox.js" %}"></script>
+    <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'js/locales/bootstrap-datepicker.fr.js' %}"></script>
+
+    {% block script %}
+    {% endblock %}
+
+</body>
+</html>

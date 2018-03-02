@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% comment "License" %}
+* Racetiming is an application designed to manage ranking during running
+* competition.
+*
+* Copyright (C) 2018 Leïla Verpoorten
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* A copy of this license - GNU General Public License - is available
+* at the root of the source code of this program.  If not,
+* see http://www.gnu.org/licenses/.
+{% endcomment %}
+
+{% block breadcrumb %}
+<li class="active" id="lnk_ranking">{% trans 'ranking' %}</li>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2>{% trans 'ranking' %}</h2>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form method="post"
+              action="{% url 'add_ranking' %}">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% bootstrap_form_errors form %}
+            <br>
+            <button type="submit" class="btn btn-primary pull-right" title="{% trans 'save'%}">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"> {% trans 'save'%}</span>
+            </button>
+        </form>
+        {% if rankings %}
+            <table class="table table-hover">
+                <thead>
+                    <th></th>
+                    <th>{% trans 'runner' %}</th>
+                    <th>{% trans 'number'%}</th>
+                    <th>{% trans 'checkin' %}</th>
+                    <th>{% trans 'time' %}</th>
+                    <th>{% trans 'general_ranking' %}</th>
+                    <th>{% trans 'category_ranking' %}</th>
+                    <th>{% trans 'category' %}</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                {% for ranking in rankings %}
+                <tr {% if ranking.category_ranking == 1 %}
+                        {% if ranking.runner.gender == 'M'%}
+                            style="background-color:#70db70"
+                        {% else %}
+                            style="background-color:#ffbb99"
+                        {% endif %}
+
+                {% endif %}>
+                    <td>{% if ranking.attention %}
+                            <span style="color:red" title="{% trans 'duplicated'%}'">ATTENTION</span>
+                        {% endif %}
+                        {% if ranking.category_ranking == 1 %}
+                            <img src="{% static 'img/trophy.png' %}" style="height:20px;">
+                        {% endif %}
+                    </td>
+                    <td>{{ ranking.runner }}</td>
+                    <td>{{ ranking.runner.number }}</td>
+                    <td>{{ ranking.checkin|date:"H:i" }}</td>
+                    <td>{{ ranking.race_time }}</td>
+                    <td>{{ ranking.general_ranking }}</td>
+                    <td>{{ ranking.category_ranking }}</td>
+                    <td {% if ranking.category_ranking == 1%} style="font-weight: bold" {% endif %}>{{ ranking.runner.category }}</td>
+                    <td>{% if ranking.duplicated%}<a href="{% url 'delete_ranking' ranking.id %}">{% trans 'delete' %}</a>{% endif %}</td>
+                </tr>
+                {% endfor%}
+                </tbody>
+            </table>
+        {% endif%}
+    </div>
+</div>
+
+
+{% endblock %}

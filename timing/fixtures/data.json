@@ -1,0 +1,298 @@
+[
+  {
+    "model": "timing.race",
+    "pk": 1,
+    "fields": {
+      "description": "Lisogne 5km",
+      "race_date": "2018-06-02",
+      "race_start": "10:00",
+      "current": true,
+      "unit": "KM",
+      "distance": "5.0"
+    }
+  },
+  {
+    "model": "timing.race",
+    "pk": 2,
+    "fields": {
+      "description": "Lisogne 10km",
+      "race_date": "2018-06-02",
+      "race_start": "12:00",
+      "current": true,
+      "unit": "KM",
+      "distance": "10.0"
+    }
+  },
+  {
+    "model": "timing.race",
+    "pk": 3,
+    "fields": {
+      "description": "10km",
+      "race_date": "2018-09-01",
+      "race_start": "12:00",
+      "current": false,
+      "unit": "KM",
+      "distance": "10.0"
+    }
+  },
+  {
+    "model": "timing.category",
+    "pk": 1,
+    "fields": {
+      "label": "Espoirs féminins",
+      "end_date": "2020-12-31",
+      "start_date": "1999-01-01",
+      "gender": "F"
+    }
+  },
+  {
+    "model": "timing.category",
+    "pk": 2,
+    "fields": {
+      "label": "Dames",
+      "end_date": "1998-12-31",
+      "start_date": "1979-01-01",
+      "gender": "F"
+    }
+  },
+  {
+    "model": "timing.category",
+    "pk": 3,
+    "fields": {
+      "label": "Aînées I",
+      "end_date": "1978-12-31",
+      "start_date": "1969-01-01",
+      "gender": "F"
+    }
+  },
+  {
+    "model": "timing.category",
+    "pk": 4,
+    "fields": {
+      "label": "Aînées II",
+      "end_date": "1968-12-31",
+      "start_date": "1959-01-01",
+      "gender": "F"
+    }
+  },
+  {
+    "model": "timing.category",
+    "pk": 5,
+    "fields": {
+      "label": "Aînées III",
+      "end_date": "1958-12-31",
+      "start_date": "1949-01-01",
+      "gender": "F"
+    }
+  },
+  {
+    "model": "timing.category",
+    "pk": 6,
+    "fields": {
+      "label": "Aînées IV",
+      "end_date": "1948-12-31",
+      "start_date": "1800-01-01",
+      "gender": "F"
+    }
+  },
+  {
+    "model": "timing.category",
+    "pk": 7,
+    "fields": {
+      "label": "Espoirs masculins",
+      "end_date": "2020-12-31",
+      "start_date": "1999-01-01",
+      "gender": "M"
+    }
+  },
+  {
+    "model": "timing.category",
+    "pk": 8,
+    "fields": {
+      "label": "Seniors",
+      "end_date": "1998-12-31",
+      "start_date": "1979-01-01",
+      "gender": "M"
+    }
+  },
+  {
+    "model": "timing.category",
+    "pk": 9,
+    "fields": {
+      "label": "Vétérans I",
+      "end_date": "1978-12-31",
+      "start_date": "1969-01-01",
+      "gender": "M"
+    }
+  },
+  {
+    "model": "timing.category",
+    "pk": 10,
+    "fields": {
+      "label": "Vétérans II",
+      "end_date": "1968-12-31",
+      "start_date": "1959-01-01",
+      "gender": "M"
+    }
+  },
+  {
+    "model": "timing.category",
+    "pk": 11,
+    "fields": {
+      "label": "Vétérans III",
+      "end_date": "1958-12-31",
+      "start_date": "1949-01-01",
+      "gender": "M"
+    }
+  },
+  {
+    "model": "timing.category",
+    "pk": 12,
+    "fields": {
+      "label": "Vétérans IV",
+      "end_date": "1948-12-31",
+      "start_date": "1800-01-01",
+      "gender": "M"
+    }
+  },
+  {
+    "model": "timing.runner",
+    "pk": 1,
+    "fields": {
+      "first_name": "Martine",
+      "last_name": "Dupont",
+      "gender": "F",
+      "number": 1,
+      "category": 1,
+      "birth_date": "2000-01-01",
+      "race": 1
+
+    }
+  },
+  {
+    "model": "timing.runner",
+    "pk": 2,
+    "fields": {
+      "first_name": "Tilia",
+      "last_name": "Marchal",
+      "gender": "F",
+      "number": 2,
+      "category": 1,
+      "birth_date": "2008-09-01",
+      "race": 1
+
+    }
+  },
+  {
+    "model": "timing.runner",
+    "pk": 3,
+    "fields": {
+      "first_name": "Cali",
+      "last_name": "Marchal",
+      "gender": "F",
+      "number": 3,
+      "category": 1,
+      "birth_date": "2010-02-03",
+      "race": 1
+
+    }
+  },
+  {
+    "model": "timing.runner",
+    "pk": 4,
+    "fields": {
+      "first_name": "Mathys",
+      "last_name": "Vandevorst",
+      "gender": "M",
+      "number": 4,
+      "category": 7,
+      "birth_date": "2001-12-27",
+      "race": 1
+
+    }
+  },
+  {
+    "model": "timing.runner",
+    "pk": 5,
+    "fields": {
+      "first_name": "Théo",
+      "last_name": "Verpoorten",
+      "gender": "M",
+      "number": 5,
+      "category": 7,
+      "birth_date": "2001-12-27",
+      "race": 1
+
+    }
+  },
+  {
+    "model": "timing.runner",
+    "pk": 6,
+    "fields": {
+      "first_name": "Robin",
+      "last_name": "Verpoorten",
+      "gender": "M",
+      "number": 6,
+      "category": 7,
+      "birth_date": "2001-12-27",
+      "race": 1
+
+    }
+  },
+  {
+    "model": "timing.runner",
+    "pk": 7,
+    "fields": {
+      "first_name": "Stéphan",
+      "last_name": "Marchal",
+      "gender": "M",
+      "number": 7,
+      "category": 9,
+      "birth_date": "1976-06-17",
+      "race": 1
+
+    }
+  },
+  {
+    "model": "timing.runner",
+    "pk": 8,
+    "fields": {
+      "first_name": "Arnaud",
+      "last_name": "Verpoorten",
+      "gender": "M",
+      "number": 8,
+      "category": 9,
+      "birth_date": "1976-06-17",
+      "race": 1
+
+    }
+  },
+  {
+    "model": "timing.runner",
+    "pk": 9,
+    "fields": {
+      "first_name": "Leila",
+      "last_name": "Verpoorten",
+      "gender": "F",
+      "number": 9,
+      "category": 3,
+      "birth_date": "1977-04-22",
+      "race": 1
+
+    }
+  },
+  {
+    "model": "timing.runner",
+    "pk": 10,
+    "fields": {
+      "first_name": "Stéphanie",
+      "last_name": "Jadoulle",
+      "gender": "F",
+      "number": 10,
+      "category": 3,
+      "birth_date": "1978-09-19",
+      "race": 1
+
+    }
+  }
+]

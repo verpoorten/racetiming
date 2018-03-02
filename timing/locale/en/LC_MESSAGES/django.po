@@ -1,0 +1,113 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-28\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "female"
+msgstr "Female"
+
+msgid "male"
+msgstr "Male"
+
+msgid "lastname"
+msgstr "Lastname"
+
+msgid "firstname"
+msgstr "FirstName"
+
+msgid "add"
+msgstr "Add"
+
+msgid "save"
+msgstr "Save"
+
+msgid "update"
+msgstr "Update"
+
+msgid "runner"
+msgstr "Runner"
+
+msgid "runners"
+msgstr "Runners"
+
+msgid "categories"
+msgstr "Category"
+
+msgid "category"
+msgstr "Catégory"
+
+msgid "ranking"
+msgstr "Ranking"
+
+msgid "number"
+msgstr "Number"
+
+msgid "enter_number"
+msgstr "Enter number"
+
+msgid "duplicated"
+msgstr "Duplicated"
+
+msgid "checkin"
+msgstr "Check-in"
+
+msgid "general_ranking"
+msgstr "General ranking"
+
+msgid "category_ranking"
+msgstr "Category ranking"
+
+msgid "list"
+msgstr "List"
+
+msgid "date"
+msgstr "Date"
+
+msgid "time"
+msgstr "Hour"
+
+msgid "races"
+msgstr "Races"
+
+msgid "ranking_update"
+msgstr "Ranking update"
+
+msgid "race"
+msgstr "Race"
+
+msgid "kilometers"
+msgstr "Kms"
+
+msgid "miles"
+msgstr "Miles"
+
+msgid "desc_application"
+msgstr "Current races"
+
+msgid "unexisting_runner"
+msgstr "Unexising runner"
+
+msgid "label"
+msgstr "Label"
+
+msgid "start"
+msgstr "Start"
+
+msgid "end"
+msgstr "End"
+
+msgid "gender"
+msgstr "Gender"
