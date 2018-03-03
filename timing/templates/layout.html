@@ -104,11 +104,21 @@
                            id="lnk_home_dropdown_runners">{% trans 'ranking_update' %}<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
-
                             <li><a href="{% url 'ranking' %}"
-                                   id="lnk_dropdown_ranking">{% trans 'ranking'%}</a></li>
+                                   id="lnk_dropdown_ranking">{% trans 'ranking_update'%}</a></li>
                             <li><a href="{% url 'podium' %}"
                                    id="lnk_dropdown_podium">{% trans 'podium'%}</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false"
+                           id="lnk_home_dropdown_runners">{% trans 'ranking' %}<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'general_ranking' %}"
+                                   id="lnk_dropdown_podium">{% trans 'general_ranking'%}</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

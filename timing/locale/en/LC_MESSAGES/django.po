@@ -111,3 +111,15 @@ msgstr "End"
 
 msgid "gender"
 msgstr "Gender"
+
+msgid "podium"
+msgstr "Podium"
+
+msgid "race_time"
+msgstr "Time"
+
+msgid "number_small"
+msgstr "Number"
+
+msgid "position"
+msgstr "Position"
