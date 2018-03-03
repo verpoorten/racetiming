@@ -27,7 +27,6 @@ from timing.models.ranking import Ranking
 from timing.models.race import Race
 from timing.forms.ranking import RankingForm
 from django.shortcuts import get_object_or_404
-from django.db.models import Min
 
 
 def ranking(request):
@@ -53,7 +52,6 @@ def add_ranking(request):
 
 def podium(request):
     resultats = []
-    results_cat = []
     races = Race.find_all()
     for r in races:
         print(r)
@@ -63,7 +61,6 @@ def podium(request):
         for ranking in rankings:
             if ranking.runner.category not in cats:
                 cats.append(ranking.runner.category)
-        podium_c = []
 
         for c in cats:
             rankings = Ranking.find_by_category_race(c, r).order_by('checkin')

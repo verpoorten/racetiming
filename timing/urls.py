@@ -29,7 +29,6 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^$', common.index, name='home'),
 
-
     url(r'^category/', include([
         url(r'^list/$', category.category_list, name='category_list'),
         url(r'^new/$', category.new, name='new_category'),
@@ -38,7 +37,6 @@ urlpatterns = [
         url(r'^update/([0-9]+)/$', category.update, name='update_category'),
         url(r'^delete/([0-9]+)/$', category.delete, name='delete_category'),
     ])),
-
     url(r'^runner/', include([
         url(r'^list/$', runner.runner_list, name='runner_list'),
         url(r'^new/$', runner.runner_new, name='new_runner'),
@@ -61,8 +59,5 @@ urlpatterns = [
         url(r'^delete/([0-9]+)/$', ranking.delete_ranking, name='delete_ranking'),
         url(r'^general/$', ranking.general_ranking, name='general_ranking'),
         url(r'^delete/general/([0-9]+)/$', ranking.delete_on_general, name='delete_ranking_general'),
-
-
-
     ])),
 ]
