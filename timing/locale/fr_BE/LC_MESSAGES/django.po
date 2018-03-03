@@ -111,3 +111,15 @@ msgstr "Fin"
 
 msgid "gender"
 msgstr "Genre"
+
+msgid "podium"
+msgstr "Podium"
+
+msgid "race_time"
+msgstr "Temps"
+
+msgid "number_small"
+msgstr "Dossard"
+
+msgid "position"
+msgstr "Position"

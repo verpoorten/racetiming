@@ -29,6 +29,7 @@ from timing.forms.ranking import RankingForm
 from django.shortcuts import get_object_or_404
 from django.db.models import Min
 
+
 def ranking(request):
     return render(request, "ranking/ranking.html",
                   {'form': RankingForm(),
@@ -51,7 +52,6 @@ def add_ranking(request):
 
 
 def podium(request):
-    print('podium')
     resultats = []
     results_cat = []
     races = Race.find_all()
@@ -83,10 +83,22 @@ def podium(request):
 
 
 def delete_ranking(request, ranking_id):
+    delete(ranking_id)
+    return HttpResponseRedirect(reverse('ranking', ))
+
+
+def delete(ranking_id):
     ranking_to_delete = get_object_or_404(Ranking,
                                           id=ranking_id)
     if ranking_to_delete:
         ranking_to_delete.delete()
 
-    return HttpResponseRedirect(reverse('ranking', ))
 
+def general_ranking(request):
+    return render(request, "ranking/general.html",
+                  {'rankings': Ranking.find_all().order_by('checkin')})
+
+
+def delete_on_general(request, ranking_id):
+    delete(ranking_id)
+    return HttpResponseRedirect(reverse('general_ranking', ))

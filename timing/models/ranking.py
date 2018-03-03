@@ -39,7 +39,8 @@ class Ranking(models.Model):
 
             min = total_min % 60
             hrs = (total_min - min) / 60
-            return ("{}:{}".format(int(hrs), int(min)))
+            return "{}:{}".format(int(hrs), format(int(min), '02d'))
+
         else:
             return ''
 
