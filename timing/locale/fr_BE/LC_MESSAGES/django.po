@@ -123,3 +123,24 @@ msgstr "Dossard"
 
 msgid "position"
 msgstr "Position"
+
+msgid "no_result"
+msgstr "Pas de résultats"
+
+msgid "runner_no_result"
+msgstr "Coureur sans résultat"
+
+msgid "birth_date"
+msgstr "Date de naissance"
+
+msgid "price"
+msgstr "Prix"
+
+msgid "presale_price"
+msgstr "Prix en prévente"
+
+msgid "bank_account"
+msgstr "Numéro de compte en banque"
+
+msgid "current"
+msgstr "Actif"

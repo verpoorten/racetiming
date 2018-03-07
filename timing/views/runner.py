@@ -26,28 +26,29 @@ from timing.forms.runner import RunnerForm, RunnerUpdateForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
+from timing.views.common import get_common_data
 
 
 def runner_list(request):
     r = Runner.find_all()
+    context = {"runners": r}
+    context.update(get_common_data())
     return render(request, "runner/list.html",
-                  {"runners": r})
+                  context)
 
 
 def runner_new(request):
-    print('runner_new')
+    context = {'form': RunnerForm()}
+    context.update(get_common_data())
     return render(request, "runner/creation.html",
-                  {'form': RunnerForm()})
+                  context)
 
 
 def runner_create(request):
-    print('runner_create')
     return runner_add(request, None)
 
 
 def runner_add(request, runner_id):
-    print(runner_id)
-    print('runner_add')
     if runner_id:
         instance = get_object_or_404(Runner, id=runner_id)
         page_html= "runner/modification.html"
@@ -58,19 +59,18 @@ def runner_add(request, runner_id):
 
     form = RunnerForm(request.POST or None, instance=instance)
     if form.is_valid():
-        print('valid')
         new_runner = form.save()
         return HttpResponseRedirect(reverse('runner_list', ))
     else:
-        print('invlid')
+        context = {'form': form}
+        context.update(get_common_data())
         return render(request, page_html,
-                      {'form': form})
+                      context)
 
 
 def runner_update(request, runner_id):
-    print('runner_update {}'.format(runner_id))
     a_runner = Runner.find_by_id(runner_id)
+    context = {'form': RunnerUpdateForm(instance=a_runner), 'runner': a_runner}
+    context.update(get_common_data())
     return render(request, "runner/modification.html",
-                  {'form': RunnerUpdateForm(instance=a_runner),
-                                            'runner': a_runner})
-
+                  context)

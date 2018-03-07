@@ -123,3 +123,33 @@ msgstr "Number"
 
 msgid "position"
 msgstr "Position"
+
+msgid "no_result"
+msgstr "No result"
+
+msgid "runner_no_result"
+msgstr "Runner without result"
+
+msgid "birth_date"
+msgstr "Birth date"
+
+msgid "price"
+msgstr "Price"
+
+msgid "presale_price"
+msgstr "Presale price"
+
+msgid "bank_account"
+msgstr "Bank account"
+
+msgid "description"
+msgstr "Description"
+
+msgid "unit"
+msgstr "Unit"
+
+msgid "distance"
+msgstr "Distance"
+
+msgid "current"
+msgstr "Actif"

@@ -24,15 +24,20 @@ from __future__ import unicode_literals
 
 from django.db import models
 from timing.models.enums import unit
+from django.utils.translation import ugettext as _
 
 
 class Race(models.Model):
-    description = models.CharField(max_length=150, db_index=True)
-    distance = models.DecimalField(max_digits=5, decimal_places=2)
-    unit = models.CharField(max_length=30, choices=unit.UNIT_CHOICES, default='KM')
-    race_date = models.DateField()
-    race_start = models.TimeField(blank=True, null=True)
-    current = models.BooleanField(default=False)
+    description = models.CharField(max_length=150, db_index=True, verbose_name=_('description'))
+    distance = models.DecimalField(max_digits=5, decimal_places=2, verbose_name=_('distance'))
+    unit = models.CharField(max_length=30, choices=unit.UNIT_CHOICES, default='KM', verbose_name=_('unit'))
+    race_date = models.DateField(verbose_name=_('date'))
+    race_start = models.TimeField(blank=True, null=True, verbose_name=_('time'))
+    current = models.BooleanField(default=False, verbose_name=_('current'))
+    presale_price = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True, verbose_name=_('presale_price'))
+    price = models.DecimalField(max_digits=5, decimal_places=2, verbose_name=_('price'))
+    bank_account = models.CharField(max_length=30, verbose_name=_('bank_account'))
+
 
     def __str__(self):
         return "{}".format(self.description)

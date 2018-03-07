@@ -37,10 +37,7 @@
     <link rel="stylesheet" href="{% static 'css/armata.css' %}" type='text/css'>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}?version={{ js }}">
-    <link rel="stylesheet" href="{% static 'css/osis.css' %}?version={{ js }}">
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/tree.css' %}">
-    <link rel="stylesheet" href="{% static 'css/jstree.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/dataTables.bootstrap.min.css' %}">
     {% block header %}
 
@@ -117,8 +114,10 @@
                            id="lnk_home_dropdown_runners">{% trans 'ranking' %}<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{% url 'general_ranking' %}"
-                                   id="lnk_dropdown_podium">{% trans 'general_ranking'%}</a></li>
+                            {% for race in current_races %}
+                                <li><a href="{% url 'general_ranking' race.id %}"
+                                       id="lnk_dropdown_podium">{% trans 'general_ranking'%} - {{race}}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -153,17 +152,16 @@
     <script src="{% static "js/jquery-2.1.4.min.js" %}"></script>
     <script src="{% static "js/bootstrap.min.js" %}"></script>
     <script src="{% static "js/custom.js" %}"></script>
-    <script src="{% static "js/location.js" %}"></script>
-    <script src="{% static "js/personne.js" %}"></script>
-    <script src="{% static "js/societe.js" %}"></script>
-    <script src="{% static "js/suivi.js" %}"></script>
-    <script src="{% static "js/alerte.js" %}"></script>
     <script src="{% static "js/jquery.dataTables.min.js" %}"></script>
     <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
     <script src="{% static 'js/locales/bootstrap-datepicker.fr.js' %}"></script>
     <script src="{% static "js/customComboBox.js" %}"></script>
     <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
     <script src="{% static 'js/locales/bootstrap-datepicker.fr.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/dataTables.bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/diacritics-sort.js' %}"></script>
+
 
     {% block script %}
     {% endblock %}

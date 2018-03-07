@@ -27,39 +27,6 @@
 {% endblock %}
 
 {% block content %}
-{% if highlights %}
-    <div id="carousel_academic_event" class="carousel slide" data-ride="carousel" data-interval="3000">
-        <ol class="carousel-indicators">
-            {% for highlight in highlights %}
-                <li data-target="#carousel_academic_event" data-slide-to="{{ forloop.counter0 }}"
-                    {% if forloop.counter0 == 0 %}class="active"{% endif %}></li>
-            {% endfor %}
-        </ol>
-
-        <div class="carousel-inner" role="listbox" >
-            {% for highlight in highlights %}
-            <div class="item {% if forloop.counter0 == 0 %}active{% endif %}">
-              <div class="jumbotron"  style="margin-bottom: 0px; text-align: center;">
-                <h3>{{ highlight.highlight_title }}</h3>
-                <small style="margin-bottom: 10px;">{{ highlight.highlight_description }}</small>
-                <p style="margin-top: 10px;"><a class="btn btn-primary btn-sm" href="/{{ highlight.highlight_shortcut }}"
-                      role="button">{% trans 'go' %}</a>
-                </p>
-              </div>
-            </div>
-            {% endfor %}
-        </div>
-        <a class="left carousel-control" href="#carousel_academic_event" role="button" data-slide="prev" style="width: 10%;">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">{% trans 'previous' %}</span>
-        </a>
-        <a class="right carousel-control" href="#carousel_academic_event" role="button" data-slide="next" style="width: 10%;">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">{% trans 'next' %}</span>
-        </a>
-    </div>
-    <br>
-{% endif %}
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="row">
@@ -67,16 +34,16 @@
                 <img src="{% static 'img/logo.png' %}" style="margin-top: -10px;">
             </div>
             <div class="col-md-10">
-                {% if races %}
+                {% if current_races %}
                     <label>{% trans 'desc_application' %}</label>
                     <br>
                     <table class="table">
                         <tbody>
-                            {% for r in races %}
+                            {% for r in current_races %}
                             <tr>
-                                <td>{{r.description }}</td>
+                                <td>{{ r.description }}</td>
                                 <td>{{ r.distance }} {{ r.unit }}</td>
-                                <td>{{r.race_date|date:"j/m/Y" }}</td>
+                                <td>{{ r.race_date|date:"j/m/Y" }}</td>
                             </tr>
                             {% endfor%}
                         </tbody>

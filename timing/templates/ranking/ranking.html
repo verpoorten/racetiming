@@ -56,6 +56,7 @@
                     <th>{% trans 'general_ranking' %}</th>
                     <th>{% trans 'category_ranking' %}</th>
                     <th>{% trans 'category' %}</th>
+                    <th>{% trans 'race' %}</th>
                     <th></th>
                 </thead>
                 <tbody>
@@ -82,7 +83,10 @@
                     <td>{{ ranking.general_ranking }}</td>
                     <td>{{ ranking.category_ranking }}</td>
                     <td {% if ranking.category_ranking == 1%} style="font-weight: bold" {% endif %}>{{ ranking.runner.category }}</td>
+                    <td>{{ ranking.runner.race.distance}} {{ ranking.runner.race.unit}}</td>
                     <td>{% if ranking.duplicated%}<a href="{% url 'delete_ranking' ranking.id %}">{% trans 'delete' %}</a>{% endif %}</td>
+
+
                 </tr>
                 {% endfor%}
                 </tbody>

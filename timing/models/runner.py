@@ -25,6 +25,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.translation import ugettext as _
 from timing.models.category import Category
+from timing.models.payment import Payment
 from timing.models.enums import gender
 from django.db.models.functions import Lower
 from django.contrib import admin
@@ -39,14 +40,15 @@ class Runner(models.Model):
         ('F', _('female')),
         ('M', _('male')))
 
-    last_name = models.CharField(max_length=50, db_index=True)
-    first_name = models.CharField(max_length=50, db_index=True)
+    last_name = models.CharField(max_length=50, db_index=True, verbose_name=_('lastname'))
+    first_name = models.CharField(max_length=50, db_index=True, verbose_name=_('firstname'))
     middle_name = models.CharField(max_length=50, blank=True, null=True)
-    gender = models.CharField(max_length=1, blank=True, null=True, choices=gender.GENDER_CHOICES, default=None)
-    birth_date = models.DateField(blank=True, null=True)
-    number = models.IntegerField(unique=True)
-    category = models.ForeignKey('Category', blank=True, null=True, on_delete=models.DO_NOTHING)
-    race = models.ForeignKey('Race', blank=True, null=True, on_delete=models.DO_NOTHING)
+    gender = models.CharField(max_length=1, blank=True, null=True, choices=gender.GENDER_CHOICES, default=None,
+                              verbose_name=_('gender'))
+    birth_date = models.DateField(blank=True, null=True, verbose_name=_('birth_date'))
+    number = models.IntegerField(unique=True, verbose_name=_('number'), blank=True, null=True)
+    category = models.ForeignKey('Category', blank=True, null=True, on_delete=models.DO_NOTHING, verbose_name=_('category'))
+    race = models.ForeignKey('Race', blank=True, null=True, on_delete=models.DO_NOTHING, verbose_name=_('race'))
 
     def __str__(self):
         return "{}, {}".format(self.last_name, self.first_name)
@@ -72,3 +74,14 @@ class Runner(models.Model):
             return Runner.objects.get(number=a_number)
         except:
             None
+
+
+    def find_by_race(a_race):
+        return Runner.objects.filter(race=a_race)
+
+    @property
+    def payment_status(self):
+        pay = Payment.find_by_runner(self)
+        if pay:
+            return pay.status
+        return False

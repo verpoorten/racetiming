@@ -27,34 +27,38 @@ from timing.models.ranking import Ranking
 from timing.models.race import Race
 from timing.forms.ranking import RankingForm
 from django.shortcuts import get_object_or_404
+from timing.views.common import index
+from timing.views.common import get_common_data
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 def ranking(request):
+    context = {'form': RankingForm(), 'rankings': Ranking.find_all().order_by('-checkin')}
+    context.update(get_common_data())
     return render(request, "ranking/ranking.html",
-                  {'form': RankingForm(),
-                   'rankings': Ranking.find_all().order_by('-checkin')})
+                  context)
 
 
 def add_ranking(request):
     form = RankingForm(request.POST or None)
     if form.is_valid():
-        print('is valid')
         a_runner = Runner.find_by_number(request.POST.get('number', None))
         an_existing_ranking = Ranking.find_by_runner(a_runner)
         a_new_ranking = Ranking(runner=a_runner, checkin=datetime.datetime.now())
         if an_existing_ranking:
             a_new_ranking.attention = True
         a_new_ranking.save()
+    context = {'form': form, 'rankings': Ranking.find_all().order_by('checkin')}
+    context.update(get_common_data())
     return render(request, "ranking/ranking.html",
-                  {'form': form,
-                   'rankings': Ranking.find_all().order_by('checkin')})
+                  context)
 
 
 def podium(request):
     resultats = []
     races = Race.find_all()
     for r in races:
-        print(r)
         rankings = Ranking.find_by_race(r)
 
         cats = []
@@ -75,8 +79,10 @@ def podium(request):
 
             resultats.append({"race": r, "category": c, "runners": list(runners)})
 
+    context = {'results': resultats}
+    context.update(get_common_data())
     return render(request, "ranking/podium.html",
-                  {'results': resultats})
+                  context)
 
 
 def delete_ranking(request, ranking_id):
@@ -91,11 +97,36 @@ def delete(ranking_id):
         ranking_to_delete.delete()
 
 
-def general_ranking(request):
-    return render(request, "ranking/general.html",
-                  {'rankings': Ranking.find_all().order_by('checkin')})
+def general_ranking(request, race_id):
+    a_race = get_object_or_404(Race, id=race_id)
+
+    if a_race:
+        expected_runners = Runner.find_by_race(a_race)
+        rankings = Ranking.find_by_race(a_race).order_by('checkin')
+        runner_without_result = get_runner_without_result(rankings, expected_runners)
+        context = {'rankings': rankings,
+                   'race': a_race,
+                   'runner_without_result': runner_without_result}
+        context.update(get_common_data())
+        return render(request, "ranking/general.html",
+                      context)
+
+
 
 
 def delete_on_general(request, ranking_id):
     delete(ranking_id)
     return HttpResponseRedirect(reverse('general_ranking', ))
+
+def get_runner_without_result(rankings, expected_runners):
+    runner_without_results = []
+    for runner in expected_runners:
+        has_ranking = False
+        for r in rankings:
+            if r.runner == runner:
+                has_ranking = True
+                break
+        if not has_ranking:
+            runner_without_results.append(runner)
+
+    return runner_without_results

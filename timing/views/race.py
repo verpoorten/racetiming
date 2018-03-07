@@ -26,17 +26,22 @@ from timing.forms.race import RaceForm, RaceUpdateForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
+from timing.views.common import get_common_data
 
 
 def race_list(request):
     r = Race.find_all()
+    context = {"races": r}
+    context.update(get_common_data())
     return render(request, "race/list.html",
-                  {"races": r})
+                  context)
 
 
 def race_new(request):
+    context = {'form': RaceForm()}
+    context.update(get_common_data())
     return render(request, "race/creation.html",
-                  {'form': RaceForm()})
+                  context)
 
 
 def race_create(request):
@@ -44,6 +49,7 @@ def race_create(request):
 
 
 def race_add(request, race_id):
+    print('race_add')
     if race_id:
         page_html= "race/modification.html"
     else:
@@ -52,15 +58,22 @@ def race_add(request, race_id):
     instance = get_object_or_404(Race, id=race_id)
     form = RaceForm(request.POST or None, instance=instance)
     if form.is_valid():
+        print('is valid')
         new_race = form.save()
         return HttpResponseRedirect(reverse('race_list', ))
     else:
+        print('is notvalid')
+        print(form.errors)
+        context = {'form': form}
+        context.update(get_common_data())
         return render(request, page_html,
-                      {'form': form})
+                      context)
 
 
 def race_update(request, race_id):
     a_race = Race.find_by_id(race_id)
+    context = {'form': RaceUpdateForm(instance=a_race), 'race': a_race}
+    context.update(get_common_data())
+    context.update({'race': a_race})
     return render(request, "race/modification.html",
-                  {'form': RaceUpdateForm(instance=a_race),
-                   'race': a_race})
+                  context)

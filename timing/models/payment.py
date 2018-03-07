@@ -20,16 +20,23 @@
 #    see http://www.gnu.org/licenses/.
 #
 ##############################################################################
-from django.shortcuts import render
-from timing.models.race import Race
+from __future__ import unicode_literals
+
+from django.db import models
+from timing.models.enums import unit
 
 
-def index(request):
-    return render(request, "home.html",
-                  get_common_data())
+class Payment(models.Model):
+    runner = models.OneToOneField('Runner', on_delete=models.DO_NOTHING)
+    payment_date = models.DateTimeField(blank=True, null=True)
+    status = models.BooleanField(default=False)
 
-def get_common_data():
-    return {"current_races": Race.find_all_current()}
+    def __str__(self):
+        return "{} {}".format(self.runner, self.status)
 
-
+    def find_by_runner(a_runner):
+        try:
+            return Payment.objects.get(runner=a_runner)
+        except:
+            None
 

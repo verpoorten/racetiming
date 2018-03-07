@@ -6,5 +6,6 @@ from django.conf import settings
 
 urlpatterns = (
     url(r'^admin/', admin.site.urls),
-    url(r'', include('timing.urls'))
+    url(r'', include('timing.urls')),
+    url(r'', include('jogging.urls'))
 )

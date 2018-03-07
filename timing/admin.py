@@ -23,10 +23,11 @@
 from django.contrib import admin
 from timing.models import  *
 
-from timing.models import category, runner, race, ranking
+from timing.models import category, runner, race, ranking, payment
 
 
 admin.site.register(category.Category)
+admin.site.register(payment.Payment)
 admin.site.register(race.Race)
 admin.site.register(ranking.Ranking)
 admin.site.register(runner.Runner, runner.RunnerAdmin)
