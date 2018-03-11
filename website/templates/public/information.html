@@ -1,0 +1,55 @@
+{% extends "public/layout.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% comment "License" %}
+* Racetiming is an application designed to manage ranking during running
+* competition.
+*
+* Copyright (C) 2018 Leïla Verpoorten
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* A copy of this license - GNU General Public License - is available
+* at the root of the source code of this program.  If not,
+* see http://www.gnu.org/licenses/.
+{% endcomment %}
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <br><br>
+    <h2>Déroulement de la journée</h2>
+
+    A partir de 16h00 : Bar – petite restauration
+    <br><br>
+    16 h 30 : Accueil – consigne – retrait des dossards (jusqu’à 17h30)
+    <br>
+    17h 30 : Run Kids : +/- 1 km
+    <br><br>
+    18 h 00 : Départ des 10 km
+    18 h 15 : Départ des 5 km
+    <br><br>
+
+    17 h 00 : Remise des prix et tombola
+    <h2>Prix</h2>
+    {% include 'public/price.html'%}
+    <br>
+    <br>
+
+    <h2>Commodités</h2>
+    Consigne gratuite – Vestiaire hommes – Vestiaire femmes – WC – Garderie pour les enfants entre ... et ...
+</div>
+
+{% endblock %}

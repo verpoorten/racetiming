@@ -1,0 +1,92 @@
+{% extends "public/layout.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% comment "License" %}
+* Racetiming is an application designed to manage ranking during running
+* competition.
+*
+* Copyright (C) 2018 Leïla Verpoorten
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* A copy of this license - GNU General Public License - is available
+* at the root of the source code of this program.  If not,
+* see http://www.gnu.org/licenses/.
+{% endcomment %}
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+<br>
+<div class="page-header">
+    <h2>{% trans 'pre-registration' %}</h2>
+</div>
+<p>{% trans 'desc_pre_registration' %} {% if last_update%}({% trans 'last_update' %} {{last_update| default_if_none:''|date:"j/m/Y" }}){% endif %}</p>
+<div class="panel panel-default">
+    <div class="panel-body">
+        {% if runners %}
+            <table class="table " id="tbl_pre_registration" name="tbl_pre_registration">
+                <thead>
+                <tr>
+                <th>{% trans 'lastname' %}</th>
+                <th>{% trans 'firstname' %}</th>
+                <th>{% trans 'birth_date' %}</th>
+                <th>{% trans 'category' %}</th>
+                <th>{% trans 'race' %}</th>
+                <th>{% trans 'payment_status' %}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for r in runners %}
+                    <tr {% if not r.payment_status %}style="color:#c2c2d6;"{% endif%}>
+                        <td>{{r.last_name }}</td>
+                        <td>{{r.first_name}}</td>
+                        <td>{{r.birth_date|date:"j/m/Y" }}</td>
+                        <td>{{r.category }}</td>
+                        <td>{{r.race }}</td>
+                        <th>{% if r.payment_status %}{% trans 'payment_ok' %}{% else %}{% trans 'payment_ko' %}{% endif %}</th>
+                    </tr>
+                {% endfor%}
+                </tbody>
+            </table>
+        {% else %}
+        <div class="alert alert-info">{% trans 'be_first' %}</div>
+        {% endif%}
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+    $(document).ready(function()
+    {
+        $('#tbl_pre_registration').DataTable(
+                {
+                    columnDefs: [
+                        { targets: 1, type: 'diacritics-neutralise'},
+                    ],
+                    "stateSave": true,
+                    "paging" : true,
+                    "ordering" : true,
+                    "info"  : false,
+                    "searching" : true,
+                    "lengthChange": false,
+                    "language": {
+                        "oAria": {
+                            "sSortAscending":  "{% trans 'datatable_sortascending'%}",
+                            "sSortDescending": "{% trans 'datatable_sortdescending'%}",
+                        }
+                    }
+                })
+        ;});
+</script>
+{% endblock %}

@@ -35,30 +35,31 @@
 <div class="panel panel-default">
     <div class="panel-body">
         {% if runners %}
-            <table class="table" id="tbl_runners">
-                <thead>
-                    <tr>
-                        <th>{% trans 'lastname' %}</th>
-                        <th>{% trans 'firstname' %}</th>
-                        <th>{% trans 'number'%}</th>
-                        <th>{% trans 'birth_date' %}</th>
-                        <th>{% trans 'category' %}</th>
-                        <th>{% trans 'race' %}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for r in runners %}
-                    <tr {% if r.gender == 'F' %}style="font-weight: bold"{% endif %}>
-                        <td><a href="{% url 'update_runner' r.id%}">{{r.last_name }}</a></td>
-                        <td>{{r.first_name}}</td>
-                        <td>{{r.number}}</td>
-                        <td>{{r.birth_date|date:"j/m/Y" }}</td>
-                        <td>{{r.category }}</td>
-                        <td>{{r.race }}</td>
-                    </tr>
-                    {% endfor%}
-                </tbody>
-            </table>
+        <table class="table" id="tbl_runners">
+            <thead>
+            <tr>
+                <th>{% trans 'lastname' %}</th>
+                <th>{% trans 'firstname' %}</th>
+                <th>{% trans 'number'%}</th>
+                <th>{% trans 'birth_date' %}</th>
+                <th>{% trans 'category' %}</th>
+                <th>{% trans 'race' %}</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for r in runners %}
+            <tr {% if r.gender == 'F' %}style="font-weight: bold"{% endif %}>
+            <td><a href="{% url 'update_runner' r.id%}">{{r.last_name }}</a></td>
+            <td>{{r.first_name}}</td>
+            <td>{{r.number}}</td>
+            <td>{{r.birth_date|date:"j/m/Y" }}</td>
+            <td>{{r.category }}</td>
+            <td>{{r.race }}</td>
+            </tr>
+            {% endfor%}
+            </tbody>
+        </table>
         {% endif%}
         <br>
         <a class="pull-right" href="{% url 'new_runner' %}" title="{% trans 'add'%}">{% include 'components/btn_add.html' %}</a>
@@ -75,7 +76,7 @@
                     columnDefs: [
                         { targets: 1, type: 'diacritics-neutralise'},
                     ],
-                    "stateSave": true,
+                    "stateSave": false,
                     "paging" : true,
                     "ordering" : true,
                     "info"  : false,

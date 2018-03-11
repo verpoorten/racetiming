@@ -49,6 +49,8 @@ class Runner(models.Model):
     number = models.IntegerField(unique=True, verbose_name=_('number'), blank=True, null=True)
     category = models.ForeignKey('Category', blank=True, null=True, on_delete=models.DO_NOTHING, verbose_name=_('category'))
     race = models.ForeignKey('Race', blank=True, null=True, on_delete=models.DO_NOTHING, verbose_name=_('race'))
+    medical_consent = models.BooleanField(default=False, verbose_name=_('medical_consent'))
+
 
     def __str__(self):
         return "{}, {}".format(self.last_name, self.first_name)
@@ -72,6 +74,17 @@ class Runner(models.Model):
     def find_by_number(a_number):
         try:
             return Runner.objects.get(number=a_number)
+        except:
+            None
+
+    def find_by_number_started_race(a_number):
+        try:
+            res = Runner.objects.get(number=a_number)
+            if res.race.accurate_race_start:
+                print('res')
+                return res
+            else:
+                return None
         except:
             None
 

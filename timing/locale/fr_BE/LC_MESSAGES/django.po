@@ -70,6 +70,12 @@ msgstr "Classement général"
 msgid "category_ranking"
 msgstr "Classement par catégorie"
 
+msgid "general_ranking_small"
+msgstr "Clas/gén"
+
+msgid "category_ranking_small"
+msgstr "Clas/cat"
+
 msgid "list"
 msgstr "Liste"
 
@@ -144,3 +150,57 @@ msgstr "Numéro de compte en banque"
 
 msgid "current"
 msgstr "Actif"
+
+msgid "medical_consent"
+msgstr "J'affirme être en bonne santé et être apte à la pratique de la course à pied"
+
+msgid "medical_agreement"
+msgstr "Vous devez donner votre accord pour la décharge médicale"
+
+msgid "runners_registration_number"
+msgstr " coureurs se sont déjà inscrits"
+
+msgid "runner_registration_number"
+msgstr " coureur s'est déjà inscrit"
+
+msgid "start_race"
+msgstr "Démarrer la course"
+
+msgid "started_at"
+msgstr "Démarré à"
+
+msgid "runner_not_started_race"
+msgstr "Coureur d'une course qui n'a pas encore démarré"
+
+msgid "ended"
+msgstr "Course terminée"
+
+msgid "game_over"
+msgstr "Course terminée"
+
+msgid "desc_active"
+msgstr "Actif signifie que l'on va pouvoir encoder le classement et que la course va apparaitre sur le site internet"
+
+msgid "desc_ended"
+msgstr "Terminé signifie que la course est terminée, qu'on ne pourra plus encodé de coureur arrivant  et que l'on va pouvoir afficher le classement sur le site internet"
+
+msgid "accurate_start_time"
+msgstr "Heure de départ réelle"
+
+msgid "started_races"
+msgstr "Courses démarrées"
+
+msgid "accurate_race_time"
+msgstr "Temps de course"
+
+msgid "no_race_started"
+msgstr "Aucune course commencées pour le moment"
+
+msgid "mark_as_payed"
+msgstr "Marqué comme payé"
+
+msgid "amount"
+msgstr "Montant"
+
+msgid "status"
+msgstr "Etat"

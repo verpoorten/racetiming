@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% comment "License" %}
+* Racetiming is an application designed to manage ranking during running
+* competition.
+*
+* Copyright (C) 2018 Leïla Verpoorten
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* A copy of this license - GNU General Public License - is available
+* at the root of the source code of this program.  If not,
+* see http://www.gnu.org/licenses/.
+{% endcomment %}
+
+{% block breadcrumb %}
+<li class="active" id="lnk_runners">{% trans 'payment' %}</li>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2>{% trans 'runners' %}, {% trans 'pre-sale' %}</h2>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        {% if runners %}
+        <table class="table" id="tbl_runners">
+            <thead>
+            <tr>
+                <th>{% trans 'lastname' %}</th>
+                <th>{% trans 'firstname' %}</th>
+                <th>{% trans 'race' %}</th>
+                <th>{% trans 'amount'%}</th>
+                <th>{% trans 'payment_status'%}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for r in runners %}
+            <tr>
+                <td>{{r.last_name }}</td>
+                <td>{{r.first_name}}</td>
+                <td>{{r.race }}</td>
+                <td>
+                    {% if r.race.presale_price%}
+                    ({% trans 'presale'%} : {{r.race.presale_price}})
+                    {% endif %}
+                    &nbsp;
+                    {% trans 'price' %} : {{ r.race.price }}
+                </td>
+                <td>{% if r.payment_status %}
+                    <i class="fa fa-thumbs-up" style="color:green"></i>
+                    {% endif %}
+
+                    {% if r.payment_status %}
+                    {%else%}
+                    <a class="btn btn-default"
+                       href="{% url 'payed' r.id %}" ><i class="fa fa-thumbs-down" style="color:tomato"></i> {% trans 'mark_as_payed'%}</a>
+                    {%endif%}</a>
+
+                </td>
+            </tr>
+            {% endfor%}
+            </tbody>
+        </table>
+        {% endif%}
+        <br>
+        <a class="pull-right" href="{% url 'new_runner' %}" title="{% trans 'add'%}">{% include 'components/btn_add.html' %}</a>
+
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+    $(document).ready(function()
+    {
+        $('#tbl_runners').DataTable(
+                {
+                    columnDefs: [
+                        { targets: 1, type: 'diacritics-neutralise'},
+                    ],
+                    "stateSave": false,
+                    "paging" : true,
+                    "ordering" : true,
+                    "info"  : false,
+                    "searching" : true,
+                    "lengthChange": false,
+                    "language": {
+                        "oAria": {
+                            "sSortAscending":  "{% trans 'datatable_sortascending'%}",
+                            "sSortDescending": "{% trans 'datatable_sortdescending'%}",
+                        }
+                    }
+                })
+        ;});
+</script>
+{% endblock %}

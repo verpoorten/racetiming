@@ -20,6 +20,7 @@
 #    see http://www.gnu.org/licenses/.
 #
 ##############################################################################
+import datetime
 from django.shortcuts import render
 from timing.models.race import Race
 from timing.forms.race import RaceForm, RaceUpdateForm
@@ -27,8 +28,10 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from timing.views.common import get_common_data
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def race_list(request):
     r = Race.find_all()
     context = {"races": r}
@@ -37,6 +40,7 @@ def race_list(request):
                   context)
 
 
+@login_required
 def race_new(request):
     context = {'form': RaceForm()}
     context.update(get_common_data())
@@ -44,10 +48,12 @@ def race_new(request):
                   context)
 
 
+@login_required
 def race_create(request):
     return race_add(request, None)
 
 
+@login_required
 def race_add(request, race_id):
     print('race_add')
     if race_id:
@@ -70,6 +76,7 @@ def race_add(request, race_id):
                       context)
 
 
+@login_required
 def race_update(request, race_id):
     a_race = Race.find_by_id(race_id)
     context = {'form': RaceUpdateForm(instance=a_race), 'race': a_race}
@@ -77,3 +84,21 @@ def race_update(request, race_id):
     context.update({'race': a_race})
     return render(request, "race/modification.html",
                   context)
+
+@login_required
+def start_race(request, race_id):
+    a_race = Race.find_by_id(race_id)
+    a_race.accurate_race_start = datetime.datetime.now()
+    a_race.save()
+    context = get_common_data()
+    return HttpResponseRedirect(reverse('home', ))
+
+@login_required
+def end_race(request, race_id):
+    print('end_race')
+    a_race = Race.find_by_id(race_id)
+    a_race.ended = True
+    a_race.save()
+    context = get_common_data()
+    return HttpResponseRedirect(reverse('home', ))
+

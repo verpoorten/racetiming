@@ -40,20 +40,31 @@
                     <th>Description</th>
                     <th>{% trans 'date'%}</th>
                     <th>{% trans 'time'%}</th>
-                    <th>{% trans 'current'%}</th>
+                    <th>{% trans 'accurate_start_time'%}</th>
+                    <th><span title="{% trans 'desc_active' %}">{% trans 'current'%}</span></th>
+                    <th>{% trans 'ended'%}</th>
                 </thead>
                 <tbody>
                     {% for r in races %}
                     <tr>
                         <td><a href="{% url 'update_race' r.id %}">{{r.description }}</a></td>
-                        <td>{{r.race_date|date:"j/m/Y" }}</td>
-                        <td>{{r.race_start}}</td>
+                        <td>{{r.race_start|date:"j/m/Y" }}</td>
+                        <td>{{r.race_start| default_if_none:'' |date:"H:i"}}</td>
+                        <td>{{ r.accurate_race_start| default_if_none:'' |date:"H:i"}}</td>
                         <td><input type="checkbox"
                                    disabled
                                    {% if r.current %}
+                                        checked
+                                   {% endif%}
+                                   title="{% trans 'tooltip_select_all_messages' %}"/>
+                        </td>
+                        <td><input type="checkbox"
+                                   disabled
+                                   {% if r.ended %}
                                     checked
                                    {% endif%}
-                                   title="{% trans 'tooltip_select_all_messages' %}"/></td>
+                                   title="{% trans 'tooltip_select_all_messages' %}"/>
+                        </td>
                     </tr>
                     {% endfor%}
                 </tbody>

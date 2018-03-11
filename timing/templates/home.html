@@ -27,38 +27,66 @@
 {% endblock %}
 
 {% block content %}
-<div class="panel panel-default">
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-md-2">
-                <img src="{% static 'img/logo.png' %}" style="margin-top: -10px;">
+    <br>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="{% static 'img/logo.png' %}" style="margin-top: -10px;">
+                </div>
+                <div class="col-md-10">
+                    {% if current_races %}
+                        <label>{% trans 'desc_application' %}</label>
+                        <br>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th colspan="2"></th>
+                                    <th>{% trans 'date' %}</th>
+                                    <th>{% trans 'time' %}</th>
+                                    <th>{% trans 'accurate_start_time' %}</th>
+                                    <th>{% trans 'status' %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for r in current_races %}
+                                <tr>
+                                    <td>{{ r.description }}</td>
+                                    <td>{{ r.distance }} {{ r.unit }}</td>
+                                    <td>{{ r.race_start| default_if_none:''|date:"j/m/Y" }}</td>
+                                    <td>{{ r.race_start| default_if_none:'' |date:"H:i"}}</td>
+                                    <td>{{ r.accurate_race_start| default_if_none:'' |date:"H:i"}}</td>
+                                    <td>{% if r.ended == False %}
+                                            {% if r.accurate_race_start %}
+                                                {% trans 'started_at' %} {{r.accurate_race_start| default_if_none:''|date:"H:i"}}
+                                                <a href="{% url 'end_race' r.id %}">
+                                                    <span style="font-size:2em; color:red; margin-left:10px;" title="{% trans 'end_race'%}" class="center"><i class="fa fa-stop-circle"></i></span>
+                                                </a>
+                                            {%else%}
+
+                                                <a href="{% url 'start_race' r.id %}">
+                                                    <span style="font-size:2em; color:green; margin-left:10px;" title="{% trans 'start_race'%}" class="center"><i class="fa fa-play-circle"></i></span>
+                                                </a>
+                                            {%endif%}
+                                        {% else %}
+                                        {% trans 'game_over'  %}
+                                        {%endif%}
+                                    </td>
+                                </tr>
+                                {% endfor%}
+                            </tbody>
+                        </table>
+
+                    {% endif%}
+                </div>
             </div>
-            <div class="col-md-10">
-                {% if current_races %}
-                    <label>{% trans 'desc_application' %}</label>
-                    <br>
-                    <table class="table">
-                        <tbody>
-                            {% for r in current_races %}
-                            <tr>
-                                <td>{{ r.description }}</td>
-                                <td>{{ r.distance }} {{ r.unit }}</td>
-                                <td>{{ r.race_date|date:"j/m/Y" }}</td>
-                            </tr>
-                            {% endfor%}
-                        </tbody>
-                    </table>
-                {% endif%}
-            </div>
+            <br>
+
+            <br>
         </div>
-        <br>
-
-        <br>
     </div>
-</div>
-
 {% endblock %}
 
 {% block script %}
-<script type="text/javascript" src="{% static 'js/home.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
 {% endblock %}

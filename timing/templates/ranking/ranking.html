@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load bootstrap3 %}
+{% load duration %}
 
 {% comment "License" %}
 * Racetiming is an application designed to manage ranking during running
@@ -35,28 +36,62 @@
 
 <div class="panel panel-default">
     <div class="panel-body">
+        {% if started_races %}
+            <center>
+                <div class="panel">
+                    <label>{% trans 'started_races' %}</label>
+                    <br>
+                    <table class="table alert alert-info">
+                        <thead><tr><th></th><th></th></tr></thead>
+                            {% for started_race in started_races %}
+                                <tr>
+                                    <td {% if started_race.runners_arrived == started_race.runners_expected %} class="success" {% endif%}>{{ started_race.description| default_if_none:''}} {{started_race.distance| default_if_none:''}} {{started_race.unit| default_if_none:''}}</td>
+                                    <td {% if started_race.runners_arrived == started_race.runners_expected %} class="success" {% endif%}><label>{{ started_race.runners_arrived }}/ {{ started_race.runners_expected }}</label></td>
+                                </tr>
+                            {% endfor %}
+
+                    </table>
+
+                    <br>
+                </div>
+            </center>
+
         <form method="post"
               action="{% url 'add_ranking' %}">
             {% csrf_token %}
             {% bootstrap_form form %}
             {% bootstrap_form_errors form %}
             <br>
-            <button type="submit" class="btn btn-primary pull-right" title="{% trans 'save'%}">
-                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"> {% trans 'save'%}</span>
-            </button>
+            <div class="row">
+                <div class="col-md-10">
+                    {% if message %}
+                        <div class="alert alert-danger">{{message}}</div>
+                    {% endif %}
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary pull-right" title="{% trans 'save'%}">
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"> {% trans 'save'%}</span>
+                    </button>
+                </div>
+            </div>
+
         </form>
+        {% else %}
+            <div class="alert alert-warning">{% trans 'no_race_started'%}</div>
+        {% endif %}
         {% if rankings %}
             <table class="table table-hover">
                 <thead>
                     <th></th>
-                    <th>{% trans 'runner' %}</th>
-                    <th>{% trans 'number'%}</th>
-                    <th>{% trans 'checkin' %}</th>
-                    <th>{% trans 'time' %}</th>
-                    <th>{% trans 'general_ranking' %}</th>
-                    <th>{% trans 'category_ranking' %}</th>
-                    <th>{% trans 'category' %}</th>
                     <th>{% trans 'race' %}</th>
+                    <th>{% trans 'runner' %}</th>
+                    <th>{% trans 'number_small'%}</th>
+                    <th>{% trans 'checkin' %}</th>
+                    <th>{% trans 'race_time' %}</th>
+                    <th>{% trans 'general_ranking_small' %}</th>
+                    <th>{% trans 'category_ranking_small' %}</th>
+                    <th>{% trans 'category' %}</th>
+
                     <th></th>
                 </thead>
                 <tbody>
@@ -67,8 +102,8 @@
                         {% else %}
                             style="background-color:#ffbb99"
                         {% endif %}
-
                 {% endif %}>
+
                     <td>{% if ranking.attention %}
                             <span style="color:red" title="{% trans 'duplicated'%}'">ATTENTION</span>
                         {% endif %}
@@ -76,14 +111,15 @@
                             <img src="{% static 'img/trophy.png' %}" style="height:20px;">
                         {% endif %}
                     </td>
+                    <td>{{ ranking.runner.race.distance}} {{ ranking.runner.race.unit}}</td>
                     <td>{{ ranking.runner }}</td>
                     <td>{{ ranking.runner.number }}</td>
                     <td>{{ ranking.checkin|date:"H:i" }}</td>
-                    <td>{{ ranking.race_time }}</td>
+                    <td>{{ ranking.accurate_time|duration}}</td>
                     <td>{{ ranking.general_ranking }}</td>
                     <td>{{ ranking.category_ranking }}</td>
                     <td {% if ranking.category_ranking == 1%} style="font-weight: bold" {% endif %}>{{ ranking.runner.category }}</td>
-                    <td>{{ ranking.runner.race.distance}} {{ ranking.runner.race.unit}}</td>
+
                     <td>{% if ranking.duplicated%}<a href="{% url 'delete_ranking' ranking.id %}">{% trans 'delete' %}</a>{% endif %}</td>
 
 

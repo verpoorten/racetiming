@@ -27,8 +27,9 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from timing.views.common import get_common_data
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def runner_list(request):
     r = Runner.find_all()
     context = {"runners": r}
@@ -36,18 +37,19 @@ def runner_list(request):
     return render(request, "runner/list.html",
                   context)
 
-
+@login_required
 def runner_new(request):
     context = {'form': RunnerForm()}
     context.update(get_common_data())
     return render(request, "runner/creation.html",
                   context)
 
-
+@login_required
 def runner_create(request):
     return runner_add(request, None)
 
 
+@login_required
 def runner_add(request, runner_id):
     if runner_id:
         instance = get_object_or_404(Runner, id=runner_id)
@@ -67,7 +69,7 @@ def runner_add(request, runner_id):
         return render(request, page_html,
                       context)
 
-
+@login_required
 def runner_update(request, runner_id):
     a_runner = Runner.find_by_id(runner_id)
     context = {'form': RunnerUpdateForm(instance=a_runner), 'runner': a_runner}

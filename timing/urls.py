@@ -21,14 +21,18 @@
 #
 ##############################################################################
 from django.conf.urls import url
-from timing.views import ranking, runner, race, category, common
+from timing.views import ranking, runner, race, category, common, payment
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf import settings
+from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth.views import login, logout
 
 
 urlpatterns = [
     url(r'^$', common.index, name='home'),
-
+    # url(r'^login/$',login, {'template_name': settings.LOGOUT_REDIRECT_URL}, name='login'),
+    # url(r'^logout/$', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
     url(r'^category/', include([
         url(r'^list/$', category.category_list, name='category_list'),
         url(r'^new/$', category.new, name='new_category'),
@@ -51,6 +55,10 @@ urlpatterns = [
         url(r'^add/([0-9]+)/$', race.race_add, name='add_race'),
         url(r'^create/$', race.race_create, name='create_race'),
         url(r'^update/([0-9]+)/$', race.race_update, name='update_race'),
+        url(r'^start_race/([0-9]+)/$', race.start_race, name='start_race'),
+        url(r'^end_race/([0-9]+)/$', race.end_race, name='end_race'),
+
+
     ])),
     url(r'^ranking/', include([
         url(r'^$', ranking.ranking, name='ranking'),
@@ -60,4 +68,8 @@ urlpatterns = [
         url(r'^general/([0-9]+)/$', ranking.general_ranking, name='general_ranking'),
         url(r'^delete/general/([0-9]+)/$', ranking.delete_on_general, name='delete_ranking_general'),
     ])),
+    url(r'^payment/$', payment.payment_list, name='payment'),
+    url(r'^payed/([0-9]+)/$', payment.payed, name='payed'),
+
+
 ]

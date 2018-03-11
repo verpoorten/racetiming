@@ -31,30 +31,52 @@ from timing.views.common import index
 from timing.views.common import get_common_data
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from django.utils.translation import ugettext as _
+from datetime import  time
+from django.utils import timezone
 
 
+@login_required
 def ranking(request):
     context = {'form': RankingForm(), 'rankings': Ranking.find_all().order_by('-checkin')}
     context.update(get_common_data())
+    context.update({'started_races': Race.find_started_race()})
     return render(request, "ranking/ranking.html",
                   context)
 
 
+@login_required
 def add_ranking(request):
+    print('add_ranking')
     form = RankingForm(request.POST or None)
-    if form.is_valid():
-        a_runner = Runner.find_by_number(request.POST.get('number', None))
-        an_existing_ranking = Ranking.find_by_runner(a_runner)
-        a_new_ranking = Ranking(runner=a_runner, checkin=datetime.datetime.now())
-        if an_existing_ranking:
-            a_new_ranking.attention = True
-        a_new_ranking.save()
     context = {'form': form, 'rankings': Ranking.find_all().order_by('checkin')}
+    if form.is_valid():
+        a_runner = Runner.find_by_number_started_race(request.POST.get('number', None))
+        if a_runner:
+            an_existing_ranking = Ranking.find_by_runner(a_runner)
+            a_new_ranking = Ranking(runner=a_runner,
+                                    checkin=timezone.now())
+            if an_existing_ranking:
+                a_new_ranking.attention = True
+
+            # a_new_ranking.accurate_time = a_new_ranking.checkin - datetime.datetime.combine(a_runner.race.race_start, time())
+            print('sub')
+            a_new_ranking.accurate_time = a_new_ranking.checkin - a_runner.race.accurate_race_start
+            print(a_new_ranking.accurate_time )
+
+
+            a_new_ranking.save()
+        else:
+            message=_('runner_not_started_race')
+            context.update({'message': message})
     context.update(get_common_data())
+    context.update({'started_races': Race.find_started_race()})
     return render(request, "ranking/ranking.html",
                   context)
 
 
+@login_required
 def podium(request):
     resultats = []
     races = Race.find_all()
@@ -85,6 +107,7 @@ def podium(request):
                   context)
 
 
+@login_required
 def delete_ranking(request, ranking_id):
     delete(ranking_id)
     return HttpResponseRedirect(reverse('ranking', ))
@@ -96,7 +119,7 @@ def delete(ranking_id):
     if ranking_to_delete:
         ranking_to_delete.delete()
 
-
+@login_required
 def general_ranking(request, race_id):
     a_race = get_object_or_404(Race, id=race_id)
 
@@ -112,11 +135,11 @@ def general_ranking(request, race_id):
                       context)
 
 
-
-
+@login_required
 def delete_on_general(request, ranking_id):
     delete(ranking_id)
     return HttpResponseRedirect(reverse('general_ranking', ))
+
 
 def get_runner_without_result(rankings, expected_runners):
     runner_without_results = []
@@ -130,3 +153,25 @@ def get_runner_without_result(rankings, expected_runners):
             runner_without_results.append(runner)
 
     return runner_without_results
+
+
+def check_time_difference(t1, t2):
+    t1_date = datetime(
+        t1.year,
+        t1.month,
+        t1.day,
+        t1.hour,
+        t1.minute,
+        t1.second)
+
+    t2_date = datetime(
+        t2.year,
+        t2.month,
+        t2.day,
+        t2.hour,
+        t2.minute,
+        t2.second)
+
+    t_elapsed = t1_date - t2_date
+
+    return t_elapsed

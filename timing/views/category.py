@@ -27,8 +27,10 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from timing.views.common import get_common_data
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def category_list(request):
     r = Category.find_all()
     context = {"categories": r}
@@ -36,15 +38,21 @@ def category_list(request):
     return render(request, "category/list.html",
                   context)
 
+
+@login_required
 def new(request):
     context = {'form': CategoryForm()}
     context.update(get_common_data())
     return render(request, "category/creation.html",
                   context)
+
+
+@login_required
 def create(request):
     return add(request, None)
 
 
+@login_required
 def add(request, an_id):
     if an_id:
         instance = get_object_or_404(Category, id=an_id)
@@ -65,6 +73,7 @@ def add(request, an_id):
                       context)
 
 
+@login_required
 def update(request, runner_id):
     a_runner = Category.find_by_id(runner_id)
     context = {'form': CategoryUpdateForm(instance=a_runner), 'category': a_runner}
@@ -72,6 +81,8 @@ def update(request, runner_id):
     return render(request, "category/modification.html",
                   context)
 
+
+@login_required
 def delete(request, an_id):
     instance = get_object_or_404(Category, id=an_id)
     if instance:
