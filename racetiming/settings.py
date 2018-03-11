@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
-
+from django.core.urlresolvers import reverse, reverse_lazy
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'timing',
     'bootstrap3',
+    'website'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -109,12 +110,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-
 LANGUAGE_CODE = 'fr-be'
 
 LANGUAGE_CODE_FR = 'fr-be'
 LANGUAGE_CODE_EN = 'en'
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Brussels'
 
 USE_I18N = True
 
@@ -132,4 +132,22 @@ STATIC_URL = '/static/'
 BOOTSTRAP3 = {
     'set_placeholder': False,
     'success_css_class': ''
+}
+
+EMAIL='lisogneenfete@gmail.com'
+
+LOGIN_URL = reverse_lazy('login')
+LOGOUT_URL = reverse_lazy('logout')
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL='/'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'racetiming',
+        'USER': 'racetiming_usr',
+        'PASSWORD': 'dev',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    },
 }

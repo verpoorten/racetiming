@@ -21,8 +21,11 @@
 #
 ##############################################################################
 from django import forms
+from timing.models.race import Race
 from timing.models.runner import Runner
 from timing.forms.utils.datefield import DatePickerInput, DATE_FORMAT
+from timing.models.enums import gender
+from django.utils.translation import ugettext as _
 
 
 class RunnerForm(forms.ModelForm):
@@ -33,6 +36,11 @@ class RunnerForm(forms.ModelForm):
     class Meta:
         model = Runner
         fields = ['first_name', 'last_name', 'gender', 'birth_date', 'number', 'race']
+
+    def __init__(self, *args, **kwargs):
+        super(forms.ModelForm, self).__init__(*args, **kwargs)
+        self.fields['number'].required = True
+
 
 
 class RunnerUpdateForm(forms.ModelForm):
@@ -47,3 +55,26 @@ class RunnerUpdateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(RunnerUpdateForm, self).__init__(*args, **kwargs)
         self.fields['category'].widget.attrs['disabled'] = 'disabled'
+
+
+class RunnerInlineForm(forms.ModelForm):
+    birth_date = forms.DateField(widget=DatePickerInput(format=DATE_FORMAT),
+                                 input_formats=[DATE_FORMAT, ],
+                                 required=True)
+    gender = forms.ChoiceField(choices=gender.GENDER_CHOICES, required=True)
+
+    race = forms.ModelChoiceField(queryset=Race.find_all_current_pre_registration(),
+                                  widget=forms.Select(), required=True, empty_label=None)
+
+    class Meta:
+        model = Runner
+        fields = ['first_name', 'last_name', 'gender', 'birth_date', 'race',  'medical_consent']
+
+    def __init__(self, *args, **kwargs):
+        super(forms.ModelForm, self).__init__(*args, **kwargs)
+        self.fields['birth_date'].label = _('birth_date')
+        self.fields['gender'].label = _('gender')
+        self.fields['race'].label = _('race')
+        self.fields['medical_consent'].widget.attrs['required'] = 'required'
+        self.fields['medical_consent'].error_messages = {'required': _('medical_agreement')}
+        self.fields['medical_consent'].widget.attrs.update({'class' : 'marginr-10'})

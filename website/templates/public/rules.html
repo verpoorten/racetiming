@@ -1,0 +1,84 @@
+{% extends "public/layout.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% comment "License" %}
+* Racetiming is an application designed to manage ranking during running
+* competition.
+*
+* Copyright (C) 2018 Leïla Verpoorten
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* A copy of this license - GNU General Public License - is available
+* at the root of the source code of this program.  If not,
+* see http://www.gnu.org/licenses/.
+{% endcomment %}
+
+{% block header %}
+{% endblock %}
+{% block content %}
+<br>
+<div class="page-header">
+    <h2>{% trans 'rules' %}</h2>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h2>Règlement général</h2>
+        <ul>
+            <li>Le jogging est ouvert à toutes et à tous.</li>
+            <li>Le montant de la participation est fixé à :</li>
+            <ul>
+                <li>6 € sur place le jour de la course et à 5 € en préinscription pour le 5 km.</li>
+                <li>6 € sur place le jour de la course et à 7 € en préinscription pour le 10 km.</li>
+            </ul>
+
+            <li>En cas de force majeure, de catastrophe naturelle ou de toute autre circonstance mettant en danger la
+                sécurité des concurrents ou rendant l’organisation impossible, les organisateurs se réservent le droit
+                d’annuler l’épreuve sans que les concurrents puissent prétendre à un quelconque dédommagement.
+                Les pré-inscrits seront remboursés.</li>
+        </ul>
+        <h2>Classement</h2>
+        <ul>
+            <li>Le classement sera établi en fonction du temps réel de course</li>
+            <li>10 catégories ont été retenues :
+                <ul>
+                    <li>Espoirs féminins : nées entre 99 et 02</li>
+                    <li>Dames : nées entre 98 et 79</li>
+                    <li>Aînées I : nées entre 78 et 69</li>
+                    <li>Aînées II : nées entre 68 et 59</li>
+                    <li>Aînées III : nées entre 58 et avant</li>
+                    <li>Espoirs masculins : nés entre 99 et 02</li>
+                    <li>Seniors : nés entre 98 et 79</li>
+                    <li>Vétérans I : nés entre 78 et 69</li>
+                    <li>Vétérans II : nés entre 68 et 59</li>
+                    <li>Vétérans III : nés entre 58 et avant</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>Divers</h2>
+        <ul>
+            <li>Chacun(e) court dans sa catégorie.</li>
+            <li>Le port du dossard est obligatoire. Il doit être porté de manière visible sur la poitrine, et restituer à l’issue de la course.</li>
+            <li>Les concurrents mineurs d’âge courent sous la responsabilité médicale de leurs parents ou tuteur.</li>
+            <li>En fin de course, tous les coureurs sont cordialement invités à la remise des prix. Seront  récompensés,
+                les premiers de chaque catégorie. Les coureurs devront être personnellement présents pour recevoir leur après la course.</li>
+            <li>Par son inscription, le coureur abandonne son droit à l’image, celle-ci ne pourra cependant être
+                utilisée qu’à des fins de promotion de notre course/notre association. Il atteste également qu’il est
+                apte à la pratique de la course à pied en compétition.</li>
+            <li>Toute tricherie avérée dans la course sera pénalisée par l’exclusion. Il en sera de même pour toute complicité de tricherie.</li>
+        </ul>
+
+    </div>
+</div>
+{% endblock %}

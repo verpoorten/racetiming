@@ -31,6 +31,7 @@ class Ranking(models.Model):
     runner = models.ForeignKey('Runner', on_delete=models.DO_NOTHING, blank=True, null=True)
     checkin = models.DateTimeField(blank=True, null=True)
     attention = models.BooleanField(default=False)
+    accurate_time = models.DurationField(blank=True, null=True)
 
     @property
     def race_time(self):
@@ -46,12 +47,12 @@ class Ranking(models.Model):
 
     @property
     def general_ranking(self):
-        return get_ranking(Ranking.find_all().order_by('checkin'), self.runner)
+        return get_ranking(Ranking.find_by_race(self.runner.race).order_by('accurate_time'), self.runner)
 
     @property
     def category_ranking(self):
         if self.runner:
-            return get_ranking(Ranking.find_by_category(self.runner.category), self.runner)
+            return get_ranking(Ranking.find_by_category_race(self.runner.category, self.runner.race), self.runner)
         return None
 
     @property
@@ -80,6 +81,7 @@ class Ranking(models.Model):
     def find_by_category_race(cat, a_race):
         results = Ranking.objects.filter(runner__category=cat, runner__race=a_race)
         return results
+
 
 
 def diff_in_minutes(start, end):

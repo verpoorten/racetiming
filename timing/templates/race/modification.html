@@ -27,6 +27,7 @@
 {% endblock %}
 
 {% block content %}
+
 <form method="post" action="{% url 'add_race' race.id %}">
     {% csrf_token %}
     {% bootstrap_form form %}

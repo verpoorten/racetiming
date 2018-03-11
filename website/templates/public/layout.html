@@ -1,0 +1,176 @@
+<!doctype html>
+{% load staticfiles %}
+{% load i18n %}
+
+{% comment "License" %}
+* Racetiming is an application designed to manage ranking during running
+* competition.
+*
+* Copyright (C) 2018 Leïla Verpoorten
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* A copy of this license - GNU General Public License - is available
+* at the root of the source code of this program.  If not,
+* see http://www.gnu.org/licenses/.
+{% endcomment %}
+
+
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>RaceTiming</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}"/>
+    <link rel="stylesheet" href="{% static 'css/armata.css' %}" type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dataTables.bootstrap.min.css' %}">
+
+    <!-- Custom CSS & Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link rel="stylesheet" href="{% static 'boust/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'boust/css/style_page.css' %}">
+
+    <!-- Custom Fonts -->
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Racing+Sans+One" rel="stylesheet">
+    {% block style %}
+    {% endblock style %}
+    <style>
+        #alert_wrong_version {
+            display: none;
+        }
+        body {
+            font-family: 'Armata', sans-serif;
+        }
+
+         /* Always set the map height explicitly to define the size of the div
+          * element that contains the map. */
+         #map {
+             height: 100%;
+         }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    </head>
+    <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="{% url 'website_home' %}">
+                    <img src="{% static 'img/logo2.ico' %}" style="margin-top: -10px;height:40px;">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden"><a href="#page-top"></a></li>
+                    {% if races_preregistration %}
+                        <li><a class="page-scroll" href="{% url 'registration' %}">{% trans 'registration' %}</a></li>
+                        <li><a class="page-scroll" href="{% url 'pre_registration' %}">{% trans 'pre-registration' %}</a></li>
+                    {% endif %}
+                    {% if races_ended %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false"
+                           id="lnk_home_dropdown_runners">{% trans 'ranking' %}<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                        {% for r_ended in races_ended %}
+                            <li><a class="page-scroll" href="#">{{r_ended}}</a></li>
+                        {% endfor %}
+                        </ul>
+                        </li>
+                    {% endif %}
+                    <li><a class="page-scroll" href="{% url 'information' %}">{% trans 'information' %}</a></li>
+                    <li><a class="page-scroll" href="{% url 'rules' %}">{% trans 'rules' %}</a></li>
+                    <li><a class="page-scroll" href="{% url 'contact' %}">{% trans 'contact' %}</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Header -->
+    {% block header %}
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in">Bienvenue à la 1ière édition de l'Eole Run!</div>
+                <div class="intro-heading">Les sportifs attaquent Lisogne</div>
+                <a href="#introduction" class="page-scroll btn btn-xl">Découvrir</a>
+            </div>
+        </div>
+    </header>
+    {% endblock %}
+    <div class="container">
+        <br><br><br>
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Lisogne en fête ASBL 2018</span>
+                </div>
+                <div class="col-md-8">
+                    <ul class="list-inline social-buttons">
+                        <li>
+                            <a href="https://www.facebook.com/groups/1516335625302734/?ref=bookmarks"><i class="fa fa-facebook " style="size:2X" ></i></a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static "js/jquery-2.1.4.min.js" %}"></script>
+
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/dataTables.bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/diacritics-sort.js' %}"></script>
+
+
+    <script src="{% static 'boust/js/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'boust/js/classie.js' %}"></script>
+    <script src="{% static 'boust/js/cbpAnimatedHeader.js' %}"></script>
+    <script src="{% static 'boust/js/jqBootstrapValidation.js' %}"></script>
+    <script src="{% static 'boust/js/agency.js' %}"></script>
+
+
+    {% block script %}
+    {% endblock %}
+
+</body>
+</html>

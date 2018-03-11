@@ -70,6 +70,12 @@ msgstr "General ranking"
 msgid "category_ranking"
 msgstr "Category ranking"
 
+msgid "general_ranking_small"
+msgstr "Gen. rank."
+
+msgid "category_ranking_small"
+msgstr "Cat. rank."
+
 msgid "list"
 msgstr "List"
 
@@ -123,3 +129,84 @@ msgstr "Number"
 
 msgid "position"
 msgstr "Position"
+
+msgid "no_result"
+msgstr "No result"
+
+msgid "runner_no_result"
+msgstr "Runner without result"
+
+msgid "birth_date"
+msgstr "Birth date"
+
+msgid "price"
+msgstr "Price"
+
+msgid "presale_price"
+msgstr "Presale price"
+
+msgid "bank_account"
+msgstr "Bank account"
+
+msgid "description"
+msgstr "Description"
+
+msgid "unit"
+msgstr "Unit"
+
+msgid "distance"
+msgstr "Distance"
+
+msgid "current"
+msgstr "Actif"
+
+msgid "medical_consent"
+msgstr "Medical consent"
+
+msgid "medical_agreement"
+msgstr "You have to be agree with the medical consent"
+
+msgid "runners_registration_number"
+msgstr " runners have already registered"
+
+msgid "runner_registration_number"
+msgstr " runner has already registered"
+
+msgid "start_race"
+msgstr "Start the race"
+
+msgid "started_at"
+msgstr "Started at"
+
+msgid "runner_not_started_race"
+msgstr "Runner of a race which has not started yet"
+
+msgid "ended"
+msgstr "Ended"
+
+msgid "game_over"
+msgstr "Game over"
+
+msgid "desc_active"
+msgstr "Active means that you'll be allowed to encode ranking, and that the race will appear on the website"
+
+msgid "accurate_start_time"
+msgstr "Acurate start time"
+
+msgid "started_races"
+msgstr "Started races"
+
+msgid "accurate_race_time"
+msgstr "Race time"
+
+msgid "no_race_started"
+msgstr "No race started yet"
+
+msgid "mark_as_payed"
+msgstr "Mark as payed"
+
+msgid "amount"
+msgstr "Amount"
+
+msgid "status"
+msgstr "Status"

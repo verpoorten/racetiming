@@ -1,0 +1,77 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-28\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "registration"
+msgstr "Inscription"
+
+msgid "pre-registration"
+msgstr "Pré-inscriptions"
+
+msgid "rules"
+msgstr "Réglement"
+
+msgid "information"
+msgstr "Informations pratiques"
+
+msgid "contact"
+msgstr "Contact"
+
+msgid "lisogne_jogging"
+msgstr "Jogging des Eoliennes"
+
+msgid "addresse"
+msgstr "Adresse"
+
+msgid "phone"
+msgstr "Téléphone"
+
+msgid "email"
+msgstr "Email"
+
+msgid "desc_pre_registration"
+msgstr "Ci-dessous la liste de pré-inscrits"
+
+msgid "payment_status"
+msgstr "Etat du paiement"
+
+msgid "individual_registration"
+msgstr "Inscription individuelle"
+
+msgid "payment_ok"
+msgstr "Paiement OK"
+
+msgid "payment_ko"
+msgstr "Paiement non-reçu"
+
+msgid "registration_form"
+msgstr "Fiche d'inscription"
+
+msgid "be_first"
+msgstr "Be the first to register"
+
+msgid "registration_confirmation"
+msgstr "Vous voilà pré-inscrit n'oubliez pas de verser le montant de %d euros sur le numéro de compte suivant : %s, et d'indiquer vos nom/prénom et date de naissance dans la communication"
+
+msgid "error_registration"
+msgstr "Erreur lors de votre inscription.  Merci de nous envoyer vos nom, prénom, date de naissance, genre et la distance à laquelle vous voulez vous inscrire. Voici notre email: %s."
+
+msgid "be_the_first"
+msgstr "Soyiez le premier à vous inscrire"
+
+msgid "last_update"
+msgstr "dernière mise à jour le"

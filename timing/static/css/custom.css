@@ -139,3 +139,14 @@ table.volumes thead{
 .color-5{
     background-color: #99e8ff;
 }
+
+.marginr-10{
+    margin-right: 10px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
