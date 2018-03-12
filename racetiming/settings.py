@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 from django.core.urlresolvers import reverse, reverse_lazy
+import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -81,20 +82,20 @@ WSGI_APPLICATION = 'racetiming.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'racetiming',
-        'USER': 'racetiming_usr',
-        'PASSWORD': 'dev',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    },
-}
 #
-# DATABASES = {'default': dj_database_url.config(conn_max_age=600,
-#                                                default='postgres://racetiming_usr:secret@localhost:5432/racetiming')}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'racetiming',
+#         'USER': 'racetiming_usr',
+#         'PASSWORD': 'dev',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     },
+# }
+#
+DATABASES = {'default': dj_database_url.config(conn_max_age=600,
+                                               default='postgres://racetiming_usr:secret@localhost:5432/racetiming')}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
