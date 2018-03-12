@@ -88,6 +88,7 @@ DATABASES = {
         'NAME': 'racetiming',
         'USER': 'racetiming_usr',
         'PASSWORD': 'dev',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     },
 }
