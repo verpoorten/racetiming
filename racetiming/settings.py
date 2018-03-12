@@ -81,19 +81,21 @@ WSGI_APPLICATION = 'racetiming.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 #
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'racetiming',
-        'USER': 'racetiming_usr',
-        'PASSWORD': 'dev',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    },
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'racetiming',
+#         'USER': 'racetiming_usr',
+#         'PASSWORD': 'dev',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     },
+# }
 
 # DATABASES = {'default': dj_database_url.config(conn_max_age=600,
-#                                                default='postgres://racetiming_usr:secret@localhost:5432/racetiming')}
+#                                                default='postgres://ocatncreizmwul:78cfa4b3e40131a98446799228637148bdf8b52df9480ec91d3717219c293282@ec2-79-125-12-27.eu-west-1.compute.amazonaws.com:5432/dk10cq5j86hr1')}
+
+#
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
