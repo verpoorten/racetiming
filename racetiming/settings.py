@@ -92,8 +92,8 @@ WSGI_APPLICATION = 'racetiming.wsgi.application'
 #     },
 # }
 
-# DATABASES = {'default': dj_database_url.config(conn_max_age=600,
-#                                                default='postgres://ocatncreizmwul:78cfa4b3e40131a98446799228637148bdf8b52df9480ec91d3717219c293282@ec2-79-125-12-27.eu-west-1.compute.amazonaws.com:5432/dk10cq5j86hr1')}
+DATABASES = {'default': dj_database_url.config(conn_max_age=600,
+                                               default='postgres://ocatncreizmwul:78cfa4b3e40131a98446799228637148bdf8b52df9480ec91d3717219c293282@ec2-79-125-12-27.eu-west-1.compute.amazonaws.com:5432/dk10cq5j86hr1')}
 
 #
 
