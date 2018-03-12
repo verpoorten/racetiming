@@ -1,3 +1,4 @@
+dj-database-url==0.4.2git s
 Django==1.10.6
 django-bootstrap3==9.1.0
 pytz==2018.3
