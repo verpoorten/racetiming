@@ -43,6 +43,7 @@
                     <th>{% trans 'accurate_start_time'%}</th>
                     <th><span title="{% trans 'desc_active' %}">{% trans 'current'%}</span></th>
                     <th>{% trans 'ended'%}</th>
+                    <th></th>
                 </thead>
                 <tbody>
                     {% for r in races %}
@@ -65,6 +66,7 @@
                                    {% endif%}
                                    title="{% trans 'tooltip_select_all_messages' %}"/>
                         </td>
+                        <th><a href="{% url 'document' r.id %}">{% trans 'xls_list'%}</a></th>
                     </tr>
                     {% endfor%}
                 </tbody>

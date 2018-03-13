@@ -47,50 +47,46 @@ class Runner(models.Model):
                               verbose_name=_('gender'))
     birth_date = models.DateField(blank=True, null=True, verbose_name=_('birth_date'))
     number = models.IntegerField(unique=True, verbose_name=_('number'), blank=True, null=True)
-    category = models.ForeignKey('Category', blank=True, null=True, on_delete=models.DO_NOTHING, verbose_name=_('category'))
+    category = models.ForeignKey('Category', blank=True, null=True, on_delete=models.DO_NOTHING,
+                                 verbose_name=_('category'))
     race = models.ForeignKey('Race', blank=True, null=True, on_delete=models.DO_NOTHING, verbose_name=_('race'))
     medical_consent = models.BooleanField(default=False, verbose_name=_('medical_consent'))
-
 
     def __str__(self):
         return "{}, {}".format(self.last_name, self.first_name)
 
     def save(self, *args, **kwargs):
         if self.birth_date and self.gender:
-            print('ici')
             self.category = Category.find_category_by_date(self.birth_date, self.gender)
-            print(self.category)
         super(Runner, self).save(*args, **kwargs)
 
+    @staticmethod
     def find_all():
         return Runner.objects.all().order_by(Lower('last_name'), Lower('first_name'))
 
     def find_by_id(an_id):
         try:
             return Runner.objects.get(pk=an_id)
-        except:
+        except Runner.DoesNotExist:
             None
 
     def find_by_number(a_number):
         try:
             return Runner.objects.get(number=a_number)
-        except:
+        except Runner.DoesNotExist:
             None
 
     def find_by_number_started_race(a_number):
         try:
             res = Runner.objects.get(number=a_number)
             if res.race.accurate_race_start:
-                print('res')
                 return res
-            else:
-                return None
-        except:
+            return None
+        except Runner.DoesNotExist:
             None
 
-
     def find_by_race(a_race):
-        return Runner.objects.filter(race=a_race)
+        return Runner.objects.filter(race=a_race).order_by('last_name', 'first_name')
 
     @property
     def payment_status(self):

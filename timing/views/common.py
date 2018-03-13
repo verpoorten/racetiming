@@ -25,13 +25,16 @@ from timing.models.race import Race
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import login as django_login
 
+
 @login_required
 def index(request):
     return render(request, "home.html",
                   get_common_data())
 
+
 def get_common_data():
     return {"current_races": Race.find_all_current()}
+
 
 def login(request):
     return django_login(request)

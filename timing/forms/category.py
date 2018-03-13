@@ -30,15 +30,15 @@ class CategoryForm(forms.ModelForm):
                                  input_formats=[DATE_FORMAT, ],
                                  required=True)
     end_date = forms.DateField(widget=DatePickerInput(format=DATE_FORMAT),
-                                 input_formats=[DATE_FORMAT, ],
-                                 required=True)
+                               input_formats=[DATE_FORMAT, ],
+                               required=True)
+
     class Meta:
         model = Category
         fields = ['label', 'start_date', 'end_date', 'gender']
 
 
 class CategoryUpdateForm(CategoryForm):
-
 
     def __init__(self, *args, **kwargs):
         super(CategoryUpdateForm, self).__init__(*args, **kwargs)

@@ -27,13 +27,11 @@ from timing.models.ranking import Ranking
 from timing.models.race import Race
 from timing.forms.ranking import RankingForm
 from django.shortcuts import get_object_or_404
-from timing.views.common import index
 from timing.views.common import get_common_data
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext as _
-from datetime import  time
 from django.utils import timezone
 
 
@@ -48,7 +46,6 @@ def ranking(request):
 
 @login_required
 def add_ranking(request):
-    print('add_ranking')
     form = RankingForm(request.POST or None)
     context = {'form': form, 'rankings': Ranking.find_all().order_by('checkin')}
     if form.is_valid():
@@ -60,15 +57,10 @@ def add_ranking(request):
             if an_existing_ranking:
                 a_new_ranking.attention = True
 
-            # a_new_ranking.accurate_time = a_new_ranking.checkin - datetime.datetime.combine(a_runner.race.race_start, time())
-            print('sub')
             a_new_ranking.accurate_time = a_new_ranking.checkin - a_runner.race.accurate_race_start
-            print(a_new_ranking.accurate_time )
-
-
             a_new_ranking.save()
         else:
-            message=_('runner_not_started_race')
+            message =_('runner_not_started_race')
             context.update({'message': message})
     context.update(get_common_data())
     context.update({'started_races': Race.find_started_race()})
@@ -118,6 +110,7 @@ def delete(ranking_id):
                                           id=ranking_id)
     if ranking_to_delete:
         ranking_to_delete.delete()
+
 
 @login_required
 def general_ranking(request, race_id):

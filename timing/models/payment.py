@@ -37,22 +37,20 @@ class Payment(models.Model):
     def find_by_runner(a_runner):
         try:
             return Payment.objects.get(runner=a_runner)
-        except:
+        except Payment.DoesNotExist:
             None
 
     def find_by_payment_status(a_status):
         return Payment.objects.filter(status=a_status)
 
-
     def get_number_by_status(a_status):
-        results= Payment.find_by_payment_status(a_status)
-
-
+        results = Payment.find_by_payment_status(a_status)
         if results:
             return len(results)
         return 0
+
     def last_update():
-        res =  Payment.objects.all().order_by('-payment_date')
+        res = Payment.objects.all().order_by('-payment_date')
         if res:
             return res.last().payment_date
         return None

@@ -29,6 +29,7 @@ from django.shortcuts import get_object_or_404
 from timing.views.common import get_common_data
 from django.contrib.auth.decorators import login_required
 
+
 @login_required
 def runner_list(request):
     r = Runner.find_all()
@@ -37,12 +38,14 @@ def runner_list(request):
     return render(request, "runner/list.html",
                   context)
 
+
 @login_required
 def runner_new(request):
     context = {'form': RunnerForm()}
     context.update(get_common_data())
     return render(request, "runner/creation.html",
                   context)
+
 
 @login_required
 def runner_create(request):
@@ -53,21 +56,21 @@ def runner_create(request):
 def runner_add(request, runner_id):
     if runner_id:
         instance = get_object_or_404(Runner, id=runner_id)
-        page_html= "runner/modification.html"
+        page_html = "runner/modification.html"
     else:
         instance = None
-        page_html= "runner/creation.html"
-
+        page_html = "runner/creation.html"
 
     form = RunnerForm(request.POST or None, instance=instance)
     if form.is_valid():
-        new_runner = form.save()
+        form.save()
         return HttpResponseRedirect(reverse('runner_list', ))
     else:
         context = {'form': form}
         context.update(get_common_data())
         return render(request, page_html,
                       context)
+
 
 @login_required
 def runner_update(request, runner_id):

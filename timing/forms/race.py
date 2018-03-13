@@ -22,27 +22,27 @@
 ##############################################################################
 from django import forms
 from timing.models.race import Race
-from timing.forms.utils.datefield import DateTimePickerInput, DATETIME_FORMAT
+from timing.forms.utils.datefield import DateTimePickerInput
 
 
 class RaceForm(forms.ModelForm):
 
     race_start = forms.SplitDateTimeField(widget=DateTimePickerInput(),
-                                            required=False)
+                                          required=False)
 
     class Meta:
         model = Race
-        fields = ['description','race_start', 'price', 'bank_account', 'presale_price', 'current']
+        fields = ['description', 'race_start', 'price', 'bank_account', 'presale_price', 'current']
 
 
 class RaceUpdateForm(forms.ModelForm):
 
-
     race_start = forms.SplitDateTimeField(widget=DateTimePickerInput(),
                                           required=False)
+
     class Meta:
         model = Race
-        fields = ['description', 'race_start', 'price', 'bank_account', 'presale_price', 'current' ]
+        fields = ['description', 'race_start', 'price', 'bank_account', 'presale_price', 'current']
 
     def __init__(self, *args, **kwargs):
         super(RaceUpdateForm, self).__init__(*args, **kwargs)

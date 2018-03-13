@@ -210,3 +210,7 @@ msgstr "Amount"
 
 msgid "status"
 msgstr "Status"
+
+msgid "unpayed"
+msgstr "Unpayed"
+

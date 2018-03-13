@@ -23,9 +23,6 @@
 from django.shortcuts import render
 from timing.models.runner import Runner
 from timing.models.payment import Payment
-from timing.forms.runner import RunnerForm, RunnerUpdateForm
-from django.http import HttpResponseRedirect
-from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from timing.views.common import get_common_data
 from django.contrib.auth.decorators import login_required
@@ -40,6 +37,7 @@ def payment_list(request):
     return render(request, "payment/list.html",
                   context)
 
+
 @login_required
 def payed(request, runner_id):
     a_runner = get_object_or_404(Runner, id=runner_id)
@@ -48,7 +46,8 @@ def payed(request, runner_id):
     if payment:
         payment.status = True
     else:
-        payment = Payment(runner=a_runner, status=True,payment_date=timezone.now())
+        payment = Payment(runner=a_runner, status=True,
+                          payment_date=timezone.now())
     payment.save()
 
     r = Runner.find_all()

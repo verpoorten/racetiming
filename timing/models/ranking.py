@@ -59,7 +59,7 @@ class Ranking(models.Model):
     def duplicated(self):
         if self.runner:
             rankings = Ranking.find_by_runner(self.runner)
-            if rankings and len(rankings)>1:
+            if rankings and len(rankings) > 1:
                 return True
         return False
 
@@ -81,7 +81,6 @@ class Ranking(models.Model):
     def find_by_category_race(cat, a_race):
         results = Ranking.objects.filter(runner__category=cat, runner__race=a_race)
         return results
-
 
 
 def diff_in_minutes(start, end):

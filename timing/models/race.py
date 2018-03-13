@@ -28,6 +28,7 @@ from django.utils.translation import ugettext as _
 from timing.models.runner import Runner
 from timing.models.ranking import Ranking
 
+
 class Race(models.Model):
     description = models.CharField(max_length=150, db_index=True, verbose_name=_('description'))
     distance = models.DecimalField(max_digits=5, decimal_places=2, verbose_name=_('distance'))
@@ -37,7 +38,8 @@ class Race(models.Model):
     current = models.BooleanField(default=False, verbose_name=_('current'))
     price = models.DecimalField(max_digits=5, decimal_places=2, verbose_name=_('price'))
     pre_registration = models.BooleanField(default=False, verbose_name=_('pre-registration'))
-    presale_price = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True, verbose_name=_('presale_price'))
+    presale_price = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True,
+                                        verbose_name=_('presale_price'))
     bank_account = models.CharField(max_length=30, verbose_name=_('bank_account'))
     ended = models.BooleanField(default=False, verbose_name=_('ended'))
 
@@ -54,10 +56,9 @@ class Race(models.Model):
         rankings = Ranking.find_by_race(self)
         for r in rankings:
             if r.runner not in available_ranking:
-                available_ranking.append(r.runner )
+                available_ranking.append(r.runner)
 
         return len(available_ranking)
-
 
     def find_by_id(an_id):
         try:
@@ -68,22 +69,19 @@ class Race(models.Model):
     def find_all():
         return Race.objects.all().order_by('race_start')
 
-
     def find_all_current():
         return Race.objects.filter(current=True).order_by('race_start')
 
     def find_all_current_pre_registration():
         return Race.objects.filter(current=True, pre_registration=True, ended=False).order_by('race_start')
 
-
     def find_started_race():
         races = Race.objects.filter(current=True).order_by('race_start')
-        races_started=[]
+        races_started = []
         for r in races:
             if r.accurate_race_start:
                 races_started.append(r)
         return races_started
-
 
     def find_ended_race():
         return Race.objects.filter(current=True, ended=True).order_by('race_start')

@@ -204,3 +204,6 @@ msgstr "Montant"
 
 msgid "status"
 msgstr "Etat"
+
+msgid "unpayed"
+msgstr "Non-payé"

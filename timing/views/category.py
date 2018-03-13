@@ -56,15 +56,14 @@ def create(request):
 def add(request, an_id):
     if an_id:
         instance = get_object_or_404(Category, id=an_id)
-        page_html= "category/modification.html"
+        page_html = "category/modification.html"
     else:
         instance = None
-        page_html= "category/creation.html"
+        page_html = "category/creation.html"
 
-
-    form =CategoryForm(request.POST or None, instance=instance)
+    form = CategoryForm(request.POST or None, instance=instance)
     if form.is_valid():
-        new_runner = form.save()
+        form.save()
         return HttpResponseRedirect(reverse('category_list', ))
     else:
         context = {'form': form}

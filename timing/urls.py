@@ -21,7 +21,7 @@
 #
 ##############################################################################
 from django.conf.urls import url
-from timing.views import ranking, runner, race, category, common, payment
+from timing.views import ranking, runner, race, category, common, payment, document
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
@@ -57,6 +57,7 @@ urlpatterns = [
         url(r'^update/([0-9]+)/$', race.race_update, name='update_race'),
         url(r'^start_race/([0-9]+)/$', race.start_race, name='start_race'),
         url(r'^end_race/([0-9]+)/$', race.end_race, name='end_race'),
+        url(r'^document/([0-9]+)/$', document.build_document, name='document'),
 
 
     ])),

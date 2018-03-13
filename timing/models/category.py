@@ -35,11 +35,9 @@ class Category(models.Model):
     def __str__(self):
         return self.label
 
-
     @property
     def get_period(self):
         return "{} - {}".format(self.start_date, self.end_date)
-
 
     @staticmethod
     def find_category_by_date(birth_date, a_gender):
@@ -47,14 +45,14 @@ class Category(models.Model):
             return Category.objects.filter(start_date__lte=birth_date,
                                            end_date__gte=birth_date,
                                            gender=a_gender).first()
-        except:
-            None
-
-    def find_by_id(an_id):
-        try:
-            return Category.objects.get(pk=an_id)
-        except:
+        except Category.DoesNotExist:
             None
 
     def find_all():
         return Category.objects.all().order_by('start_date', 'gender')
+
+    def find_by_id(an_id):
+        try:
+            return Category.objects.get(pk=an_id)
+        except Category.DoesNotExist:
+            None

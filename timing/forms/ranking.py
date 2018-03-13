@@ -24,16 +24,15 @@ from django import forms
 from django.utils.translation import ugettext as _
 from timing.models.runner import Runner
 
+
 class RankingForm(forms.Form):
     number = forms.IntegerField(required=True, label=_('number'), help_text=_('enter_number'))
 
     def clean_number(self):
-        print('clean_number')
         nb = self.cleaned_data["number"]
         if nb:
             if not Runner.find_by_number(nb):
                 self.add_error('number', "{} ({})".format(_('unexisting_runner'), nb))
-                print('erreur')
 
         return nb
 
