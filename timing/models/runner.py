@@ -57,7 +57,7 @@ class Runner(models.Model):
 
     def save(self, *args, **kwargs):
         if self.birth_date and self.gender:
-            self.category = Category.find_category_by_date(self.birth_date, self.gender)
+            self.category = Category.get_category_by_date(self.birth_date, self.gender)
         super(Runner, self).save(*args, **kwargs)
 
     @staticmethod

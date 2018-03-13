@@ -40,13 +40,15 @@ class Category(models.Model):
         return "{} - {}".format(self.start_date, self.end_date)
 
     @staticmethod
-    def find_category_by_date(birth_date, a_gender):
-        try:
-            return Category.objects.filter(start_date__lte=birth_date,
-                                           end_date__gte=birth_date,
-                                           gender=a_gender).first()
-        except Category.DoesNotExist:
-            None
+    def get_category_by_date(birth_date, a_gender):
+        if birth_date and a_gender:
+            try:
+                return Category.objects.filter(start_date__lte=birth_date,
+                                               end_date__gte=birth_date,
+                                               gender=a_gender).first()
+            except Category.DoesNotExist:
+                None
+        return None
 
     def find_all():
         return Category.objects.all().order_by('start_date', 'gender')

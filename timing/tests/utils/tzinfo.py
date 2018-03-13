@@ -20,6 +20,13 @@
 #    see http://www.gnu.org/licenses/.
 #
 ##############################################################################
-from django.test import TestCase
+import datetime
 
-# Create your tests here.
+from django.conf import settings
+from django.utils import timezone
+
+
+def get_tzinfo():
+    if settings.USE_TZ:
+        return timezone.get_current_timezone()
+    return None

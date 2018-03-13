@@ -22,7 +22,9 @@
 ##############################################################################
 from django.utils.translation import ugettext as _
 
+MALE = 'M'
+FEMALE = 'F'
 
 GENDER_CHOICES = (
-    ('F', _('female')),
-    ('M', _('male')))
+    (FEMALE, _('female')),
+    (MALE, _('male')))
