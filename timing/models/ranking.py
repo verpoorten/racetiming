@@ -79,7 +79,7 @@ class Ranking(models.Model):
         return Ranking.objects.filter(runner__race=a_race)
 
     def find_by_category_race(cat, a_race):
-        results = Ranking.objects.filter(runner__category=cat, runner__race=a_race)
+        results = Ranking.objects.filter(runner__category=cat, runner__race=a_race).order_by('accurate_time')
         return results
 
     def save(self, *args, **kwargs):

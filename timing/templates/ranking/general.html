@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load bootstrap3 %}
+{% load duration %}
 
 {% comment "License" %}
 * Racetiming is an application designed to manage ranking during running
@@ -64,7 +65,7 @@
                         </td>
                         <td>{{ ranking.runner }}</td>
                         <td>{{ ranking.runner.number }}</td>
-                        <td>{{ ranking.race_time }}</td>
+                        <td>{{ ranking.accurate_time|duration }}</td>
                         <td><span class="badge badge-info">{{ ranking.category_ranking }}</span>
                             {% if ranking.category_ranking == 1 %}
                                 <img src="{% static 'img/trophy.png' %}" style="height:20px;">

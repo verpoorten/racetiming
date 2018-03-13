@@ -214,3 +214,5 @@ msgstr "Status"
 msgid "unpayed"
 msgstr "Unpayed"
 
+msgid "xls_list"
+msgstr "Produle an XLS list of the runner"

@@ -78,7 +78,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                            aria-haspopup="true"
                            aria-expanded="false"
-                           id="lnk_home_dropdown_runners">{% trans 'races' %}<span
+                           id="lnk_home_dropdown_races">{% trans 'races' %}<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{% url 'race_list' %}"
@@ -103,7 +103,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                            aria-haspopup="true"
                            aria-expanded="false"
-                           id="lnk_home_dropdown_runners">{% trans 'ranking_update' %}<span
+                           id="lnk_home_dropdown_ranking">{% trans 'ranking_update' %}<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{% url 'ranking' %}"
@@ -116,12 +116,12 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                            aria-haspopup="true"
                            aria-expanded="false"
-                           id="lnk_home_dropdown_runners">{% trans 'ranking' %}<span
+                           id="lnk_home_dropdown_ranking">{% trans 'ranking' %}<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
                             {% for race in current_races %}
                                 <li><a href="{% url 'general_ranking' race.id %}"
-                                       id="lnk_dropdown_podium">{% trans 'general_ranking'%} - {{race}}</a></li>
+                                       id="lnk_dropdown_ranking_general_{{race.id}}">{% trans 'general_ranking'%} - {{race.description}} {{race.distance}} {{race.unit}}</a></li>
                             {% endfor %}
                         </ul>
                     </li>

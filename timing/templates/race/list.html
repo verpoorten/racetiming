@@ -68,7 +68,7 @@
                                    {% endif%}
                                    title="{% trans 'tooltip_select_all_messages' %}"/>
                         </td>
-                        <th><a href="{% url 'document' r.id %}">{% trans 'xls_list'%}</a></th>
+                        <th><a href="{% url 'document' r.id %}" title="{% trans 'xls_list'%}"><i class="fa fa-table"  style="font-size:x-large;"></i></a></th>
                     </tr>
                     {% endfor%}
                 </tbody>

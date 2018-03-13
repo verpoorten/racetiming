@@ -207,3 +207,6 @@ msgstr "Etat"
 
 msgid "unpayed"
 msgstr "Non-payé"
+
+msgid "xls_list"
+msgstr "Produire une liste Xls des coureurs de la course"
