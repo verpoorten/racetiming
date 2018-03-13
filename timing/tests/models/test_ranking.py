@@ -20,12 +20,25 @@
 #    see http://www.gnu.org/licenses/.
 #
 ##############################################################################
-from django.utils.translation import ugettext as _
+from django.test import TestCase
+from timing.models.runner import Runner
+from timing.tests.factories.race import RaceFactory
+from timing.tests.factories.runner import RunnerFactory
+from timing.tests.factories.ranking import RankingFactory
+from django.utils import timezone
 
-KM = 'KM'
-MILE = 'M'
+NUMBER_1000 = 1000
+NUMBER_1001 = 1001
+NUMBER_1002 = 1002
+NUMBER_1003 = 1003
 
 
-UNIT_CHOICES = (
-    (KM, _('kilometers')),
-    (MILE, _('miles')))
+class RankingTest(TestCase):
+
+    def test_duplicated(self):
+        a_race = RaceFactory()
+        a_runner = RunnerFactory(race=a_race)
+        ranking_1 = RankingFactory(runner=a_runner)
+        ranking_2 = RankingFactory(runner=a_runner)
+
+

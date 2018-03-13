@@ -78,9 +78,9 @@ class Runner(models.Model):
 
     def find_by_number_started_race(a_number):
         try:
-            res = Runner.objects.get(number=a_number)
-            if res.race.accurate_race_start:
-                return res
+            a_runner = Runner.objects.get(number=a_number)
+            if a_runner.race.accurate_race_start:
+                return a_runner
             return None
         except Runner.DoesNotExist:
             None

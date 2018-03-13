@@ -20,12 +20,24 @@
 #    see http://www.gnu.org/licenses/.
 #
 ##############################################################################
-from django.utils.translation import ugettext as _
+import datetime
+import factory
+import factory.fuzzy
+from django.utils import timezone
+from timing.tests.factories.runner import RunnerFactory
+import factory.fuzzy
 
-KM = 'KM'
-MILE = 'M'
+
+def generate_start_date(runner):
+    return datetime.date(timezone.now().year, 9, 30)
 
 
-UNIT_CHOICES = (
-    (KM, _('kilometers')),
-    (MILE, _('miles')))
+class RankingFactory(factory.DjangoModelFactory):
+
+    class Meta:
+        model = 'timing.Ranking'
+
+    runner = factory.SubFactory(RunnerFactory)
+    checkin = factory.LazyAttribute(generate_start_date)
+    attention = False
+    accurate_time = None

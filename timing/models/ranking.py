@@ -82,6 +82,18 @@ class Ranking(models.Model):
         results = Ranking.objects.filter(runner__category=cat, runner__race=a_race)
         return results
 
+    def save(self, *args, **kwargs):
+        an_existing_ranking = Ranking.find_by_runner(self.runner)
+        if an_existing_ranking:
+            self.attention = True
+        if self.checkin and self.runner.race.accurate_race_start:
+            self.accurate_time = self.checkin - self.runner.race.accurate_race_start
+
+        super(Ranking, self).save(*args, **kwargs)
+
+
+    def find_all_order(field_order):
+        return Ranking.objects.all().order_by(field_order)
 
 def diff_in_minutes(start, end):
     startdelta = datetime.timedelta(hours=start.hour, minutes=start.minute, seconds=start.second)

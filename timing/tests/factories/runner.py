@@ -20,12 +20,33 @@
 #    see http://www.gnu.org/licenses/.
 #
 ##############################################################################
-from django.utils.translation import ugettext as _
+import datetime
+import factory
+import factory.fuzzy
+import string
+from django.utils import timezone
+import operator
+from timing.models.enums.gender import GENDER_CHOICES
+from timing.tests.factories.category import CategoryFactory
+from timing.tests.factories.race import RaceFactory
+import factory.fuzzy
 
-KM = 'KM'
-MILE = 'M'
+def generate_start_date(runner):
+    return datetime.date(timezone.now().year, 9, 30)
 
 
-UNIT_CHOICES = (
-    (KM, _('kilometers')),
-    (MILE, _('miles')))
+
+class RunnerFactory(factory.DjangoModelFactory):
+    class Meta:
+        model = 'timing.Runner'
+
+
+    first_name = factory.Faker('first_name')
+    last_name = factory.Faker('last_name')
+    gender =  factory.Iterator(GENDER_CHOICES,
+                               getter=operator.itemgetter(0))
+    birth_date = factory.LazyAttribute(generate_start_date)
+    number = factory.fuzzy.FuzzyInteger(1, 5)
+    category = factory.SubFactory(CategoryFactory)
+    race = factory.SubFactory(RaceFactory)
+    medical_consent = False

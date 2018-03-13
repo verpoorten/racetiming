@@ -47,7 +47,7 @@ def prepare_xls_parameters_list(user, workingsheets_data, a_race):
                 [{xls_build.CONTENT_KEY: workingsheets_data,
                   xls_build.HEADER_TITLES_KEY: [str(_('lastname')),
                                                 str(_('firstname')),
-                                                "{} - {}".format(str(_('number_small')), str(a_race)),
+                                                "{} - {} {} {}".format(str(_('number_small')), str(a_race.description), str(a_race.distance), str(a_race.unit)),
                                                 str(_('category')),
                                                 str(_('status'))
 

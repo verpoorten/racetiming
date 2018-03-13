@@ -37,7 +37,8 @@ from django.utils import timezone
 
 @login_required
 def ranking(request):
-    context = {'form': RankingForm(), 'rankings': Ranking.find_all().order_by('-checkin')}
+    context = {'form': RankingForm(),
+               'rankings': Ranking.find_all_order('-accurate_time')}
     context.update(get_common_data())
     context.update({'started_races': Race.find_started_race()})
     return render(request, "ranking/ranking.html",
@@ -51,13 +52,14 @@ def add_ranking(request):
     if form.is_valid():
         a_runner = Runner.find_by_number_started_race(request.POST.get('number', None))
         if a_runner:
-            an_existing_ranking = Ranking.find_by_runner(a_runner)
+
             a_new_ranking = Ranking(runner=a_runner,
                                     checkin=timezone.now())
-            if an_existing_ranking:
-                a_new_ranking.attention = True
-
-            a_new_ranking.accurate_time = a_new_ranking.checkin - a_runner.race.accurate_race_start
+            # an_existing_ranking = Ranking.find_by_runner(a_runner)
+            # if an_existing_ranking:
+            #     a_new_ranking.attention = True
+            #
+            # a_new_ranking.accurate_time = a_new_ranking.checkin - a_runner.race.accurate_race_start
             a_new_ranking.save()
         else:
             message =_('runner_not_started_race')

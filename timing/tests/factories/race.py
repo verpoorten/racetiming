@@ -20,12 +20,27 @@
 #    see http://www.gnu.org/licenses/.
 #
 ##############################################################################
-from django.utils.translation import ugettext as _
+import factory
+import factory.fuzzy
+import operator
+from timing.models.enums.unit import UNIT_CHOICES
 
-KM = 'KM'
-MILE = 'M'
 
+class RaceFactory(factory.DjangoModelFactory):
+    class Meta:
+        model = 'timing.Race'
 
-UNIT_CHOICES = (
-    (KM, _('kilometers')),
-    (MILE, _('miles')))
+    description = factory.Sequence(lambda n: 'description - %d' % n)
+
+    distance = factory.fuzzy.FuzzyDecimal(0, 100)
+    unit = factory.Iterator(UNIT_CHOICES,
+                                getter=operator.itemgetter(0))
+    race_start = None
+    accurate_race_start = None
+    current = False
+    price = 0
+    pre_registration = False
+    presale_price = None
+    bank_account = factory.Sequence(lambda n: 'bank - %d' % n)
+    ended = False
+

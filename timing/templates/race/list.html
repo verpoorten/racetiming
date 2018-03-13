@@ -38,6 +38,7 @@
             <table class="table table-striped table-hover">
                 <thead>
                     <th>Description</th>
+                    <th>Distance</th>
                     <th>{% trans 'date'%}</th>
                     <th>{% trans 'time'%}</th>
                     <th>{% trans 'accurate_start_time'%}</th>
@@ -49,6 +50,7 @@
                     {% for r in races %}
                     <tr>
                         <td><a href="{% url 'update_race' r.id %}">{{r.description }}</a></td>
+                        <td>{{r.distance| default_if_none:''}} {{r.unit| default_if_none:''}}</td>
                         <td>{{r.race_start|date:"j/m/Y" }}</td>
                         <td>{{r.race_start| default_if_none:'' |date:"H:i"}}</td>
                         <td>{{ r.accurate_race_start| default_if_none:'' |date:"H:i"}}</td>
