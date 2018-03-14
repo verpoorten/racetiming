@@ -1,7 +1,7 @@
 os
 sys
 db.sqlite3
-/**/*.pyc
+*.pyc
 *.iml
 .idea/
 *.csv
