@@ -5,3 +5,4 @@ pytz==2018.3
 psycopg2-binary==2.7.4
 openpyxl==2.5.1
 factory_boy==2.10.0
+django-dotenv==1.4.1
