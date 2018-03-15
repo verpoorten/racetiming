@@ -154,8 +154,8 @@ LOGOUT_URL = reverse_lazy('logout')
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL='/'
 
-STATICFILES_DIRS = [
+STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
-]
+)
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
