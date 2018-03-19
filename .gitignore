@@ -11,6 +11,7 @@ __pycache__/
 .project
 .settings
 .vscode/
+.idea/
 .pydevproject
 *.mo
 /uploads/
