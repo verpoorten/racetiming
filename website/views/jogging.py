@@ -34,17 +34,21 @@ def index(request):
     return render(request, "public/home.html",
                   context)
 
+
 def information(request):
     return render(request, "public/information.html",
                   get_common_data())
+
 
 def rules(request):
     return render(request, "public/rules.html",
                   get_common_data())
 
+
 def contact(request):
     return render(request, "public/contact.html",
                   get_common_data())
+
 
 def pre_registration(request):
     context = get_common_data()
@@ -52,6 +56,7 @@ def pre_registration(request):
 
     return render(request, "public/pre-registration.html",
                   context)
+
 
 def registration(request):
     context = {'form': RunnerInlineForm()}
@@ -62,4 +67,5 @@ def registration(request):
 
 def get_common_data():
     return {"races_preregistration": Race.find_all_current_pre_registration(),
-            'races_ended': Race.find_ended_race()}
+            'races_ended': Race.find_ended_race(),
+            'last_update': Payment.last_update()}

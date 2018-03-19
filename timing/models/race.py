@@ -44,7 +44,10 @@ class Race(models.Model):
     ended = models.BooleanField(default=False, verbose_name=_('ended'))
 
     def __str__(self):
-        return "{}".format(self.description)
+        desc = self.description if self.description else ''
+        distance = self.distance if self.distance else ''
+        unit = self.unit if self.unit else ''
+        return "{} {} {}".format(desc, distance, unit)
 
     @property
     def runners_expected(self):

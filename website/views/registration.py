@@ -28,20 +28,17 @@ from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _
 from django.conf import settings
 from website.views import jogging
+from timing.models.payment import Payment
 
 
 def add_registration(request):
-    print('add_registration')
     form = RunnerInlineForm(request.POST or None)
-    print(request.POST)
     msg = None
     if form.is_valid():
-        print('valid')
         race_id = request.POST.get('race', None)
         price = None
         bank_account = None
         if race_id:
-            print('raciqsdqfqdf')
             race = get_object_or_404(Race, id=race_id)
             if race:
                 if race.bank_account:
@@ -49,21 +46,22 @@ def add_registration(request):
                 if race.price:
                     price = race.price
                 if bank_account and price:
-                    print(bank_account)
-                    print(price)
                     msg = "{}.".format((_('registration_confirmation')
                                                              % (race.presale_price,
                                                                 race.bank_account)))
         form.save()
+        context = jogging.get_common_data()
+        context.update({'confirmation_message': msg})
+        return render(request, "public/registration_confirmation.html",
+                      context)
+
     else:
         print('invalid')
-        msg = _('')
-        msg = "{}.".format((_('error_registration')
-                            % (settings.EMAIL)))
-    print(msg)
-    context = jogging.get_common_data()
-    context.update({'confirmation_message': msg})
-    return render(request, "public/registration_confirmation.html",
-                  context)
+        context = jogging.get_common_data()
+        context.update({'runners': Runner.find_all(),
+                        'form': form})
+
+        return render(request, "public/registration.html",
+                      context)
 
 

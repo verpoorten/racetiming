@@ -42,7 +42,6 @@ class RunnerForm(forms.ModelForm):
         self.fields['number'].required = True
 
 
-
 class RunnerUpdateForm(forms.ModelForm):
     birth_date = forms.DateField(widget=DatePickerInput(format=DATE_FORMAT),
                                  input_formats=[DATE_FORMAT, ],
@@ -61,6 +60,7 @@ class RunnerInlineForm(forms.ModelForm):
     birth_date = forms.DateField(widget=DatePickerInput(format=DATE_FORMAT),
                                  input_formats=[DATE_FORMAT, ],
                                  required=True)
+
     gender = forms.ChoiceField(choices=gender.GENDER_CHOICES, required=True)
 
     race = forms.ModelChoiceField(queryset=Race.find_all_current_pre_registration(),

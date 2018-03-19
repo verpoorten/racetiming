@@ -34,22 +34,30 @@
 
 <div class="panel panel-default">
     <div class="panel-body">
-        <table class="table">
-            <tr>
-                <td>{% trans 'addresse' %}</td>
-                <td>Rue du Forbo, 5501 Lisogne</td>
-                <td rowspan="3"><img
-                        src="{% static 'img/carte.png' %}" style="width:400px;"></td>
-            </tr>
-            <tr>
-                <td>{% trans 'phone' %}</td>
-                <td>+32 9</td>
-            </tr>
-            <tr>
-                <td>{% trans 'email' %}</td>
-                <td>lisogneenfete@gmail.com</td>
-            </tr>
-        </table>
+        <div class="row">
+            <div class="col-md-3">
+                <label>{% trans 'phone' %}</label>
+            </div>
+            <div class="col-md-9">
+                ...
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>{% trans 'addresse' %}</label>
+            </div>
+            <div class="col-md-9">
+                Rue du Forbo, 5501 Lisogne
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>{% trans 'email' %}</label>
+            </div>
+            <div class="col-md-9">
+                leila.verpoorten@gmail.com
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
