@@ -75,3 +75,5 @@ msgstr "Be the first one to register"
 msgid "last_update"
 msgstr "last update the"
 
+msgid "organization"
+msgstr "Organization"

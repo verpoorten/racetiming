@@ -75,3 +75,6 @@ msgstr "Soyiez le premier à vous inscrire"
 
 msgid "last_update"
 msgstr "dernière mise à jour le"
+
+msgid "organization"
+msgstr "Organisation"
