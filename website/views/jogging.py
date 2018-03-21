@@ -25,28 +25,29 @@ from timing.models.race import Race
 from timing.models.runner import Runner
 from timing.models.payment import Payment
 from timing.forms.runner import RunnerInlineForm
+from django.conf import settings
 
 
 def index(request):
     context = get_common_data()
     # context.update({'registration_number': Payment.get_number_by_status(True) })
     context.update({'registration_number': len(Runner.find_all())})
-    return render(request, "public/home.html",
+    return render(request, "home_website.html",
                   context)
 
 
 def information(request):
-    return render(request, "public/information.html",
+    return render(request, "information.html",
                   get_common_data())
 
 
 def rules(request):
-    return render(request, "public/rules.html",
+    return render(request, "rules.html",
                   get_common_data())
 
 
 def contact(request):
-    return render(request, "public/contact.html",
+    return render(request, "contact.html",
                   get_common_data())
 
 
@@ -54,18 +55,21 @@ def pre_registration(request):
     context = get_common_data()
     context.update({'runners': Runner.find_all(), 'last_update' : Payment.last_update()})
 
-    return render(request, "public/pre-registration.html",
+    return render(request, "pre-registration.html",
                   context)
 
 
 def registration(request):
     context = {'form': RunnerInlineForm()}
     context.update(get_common_data())
-    return render(request, "public/registration.html",
+    return render(request, "registration.html",
                   context)
 
 
 def get_common_data():
     return {"races_preregistration": Race.find_all_current_pre_registration(),
             'races_ended': Race.find_ended_race(),
-            'last_update': Payment.last_update()}
+            'last_update': Payment.last_update(),
+            'supported_languages': settings.LANGUAGES,
+            'default_language': settings.LANGUAGE_CODE,
+            }

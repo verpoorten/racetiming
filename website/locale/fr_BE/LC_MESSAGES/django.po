@@ -78,3 +78,24 @@ msgstr "dernière mise à jour le"
 
 msgid "organization"
 msgstr "Organisation"
+
+msgid "app_description"
+msgstr "Samedi 02 juin 2018, 1ère édition de l'Eole Run"
+
+msgid "discover"
+msgstr "Découvrir"
+
+msgid "intro_lead"
+msgstr "Bienvenue à la 1ière édition de l'Eole Run!"
+
+msgid "intro_heading"
+msgstr "Les sportifs attaquent Lisogne"
+
+msgid "male"
+msgstr "Masculin"
+
+msgid "female"
+msgstr "Féminin"
+
+msgid "registration_instruction"
+msgstr "Veuillez remplir le formulaire ci-dessous pour vous inscrire au jogging de Lisogne du samedi 2 juin 2018"

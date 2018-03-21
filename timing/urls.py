@@ -71,6 +71,7 @@ urlpatterns = [
     ])),
     url(r'^payment/$', payment.payment_list, name='payment'),
     url(r'^payed/([0-9]+)/$', payment.payed, name='payed'),
+    url(r'^lang/edit/([A-Za-z-]+)/$', common.profile_lang_edit, name='lang_edit'),
 
 
 ]

@@ -1,0 +1,54 @@
+{% load staticfiles %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% comment "License" %}
+    * Racetiming is an application designed to manage ranking during running
+    * competition.
+    *
+    * Copyright (C) 2018 Leïla Verpoorten
+    *
+    * This program is free software: you can redistribute it and/or modify
+    * it under the terms of the GNU General Public License as published by
+    * the Free Software Foundation, either version 3 of the License, or
+    * (at your option) any later version.
+    *
+    * This program is distributed in the hope that it will be useful,
+    * but WITHOUT ANY WARRANTY; without even the implied warranty of
+    * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    * GNU General Public License for more details.
+    *
+    * A copy of this license - GNU General Public License - is available
+    * at the root of the source code of this program.  If not,
+    * see http://www.gnu.org/licenses/.
+{% endcomment %}
+<br>
+{% if LANGUAGE_CODE == 'en' %}
+    <p class="lead">
+        Family friendly jogging organized by ASBL Lisogne en Fête in partnership with Mutualité Chrétienne
+        <img src="{% static 'img/mc.jpg' %}" width="50px;" alt="Logo Mutualité Chrétienne">
+    </p>
+    <em>
+        You like…
+        <br><br>
+        nature and large green spaces<br>
+        breathe the fresh air of the countryside<br>
+        <br><br>
+        …Then <a class="page-scroll" href="{% url 'registration' %}">register now</a> to the “EoleRUN”. 2 distances will be available : 5km and 10km
+    </em>
+{% else %}
+    <p class="lead">
+        Jogging convial et familial organisé par l'ASBL Lisogne en Fête en partenariat avec la Mutualité Chrétienne
+        <img src="{% static 'img/mc.jpg' %}" width="50px;" alt="Logo Mutualité Chrétienne">
+    </p>
+    <em>
+        Tu aimes…
+        <br><br>
+        La nature et les grands espaces verts<br>
+        Respirer le bon air de la campagne<br>
+        Courir à travers des chemins de terre<br>
+        <br><br>
+        …Alors <a class="page-scroll" href="{% url 'registration' %}">inscris toi</a> dès à présent à la 1ère édition du “EoleRUN”. 2 Parcours seront accessibles : 5km et 10km
+    </em>
+{% endif %}
+<br>
+<br>

@@ -24,6 +24,8 @@ from django.shortcuts import render
 from timing.models.race import Race
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import login as django_login
+from django.utils import translation
+from django.shortcuts import redirect
 
 
 @login_required
@@ -38,3 +40,12 @@ def get_common_data():
 
 def login(request):
     return django_login(request)
+
+
+def profile_lang_edit(request, ui_language):
+    print('profile_lang_edit')
+    translation.activate(ui_language)
+    print(translation.LANGUAGE_SESSION_KEY)
+    request.session[translation.LANGUAGE_SESSION_KEY] = ui_language
+    print(ui_language)
+    return redirect(request.META['HTTP_REFERER'])

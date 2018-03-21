@@ -1,4 +1,4 @@
-{% extends "public/layout.html" %}
+{% extends "layout_website.html" %}
 {% load staticfiles %}
 {% load i18n %}
 
@@ -23,12 +23,11 @@
 * see http://www.gnu.org/licenses/.
 {% endcomment %}
 
-
 {% block content %}
 <section id="introduction">
     <div class="container">
         <div class="panel panel-default">
-            <div class="panel-title"><h3>Samedi 02 juin 2018, 1ère édition de l'Eole Run</h3></div>
+            <div class="panel-title"><h3>&nbsp;&nbsp;&nbsp;{% trans 'app_description' %}</h3></div>
             <div class="panel-body">
 
                 <div class="row">
@@ -48,73 +47,27 @@
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner">
                                     <div class="item active">
-                                        <img src="{% static 'img/paysage/paysage1.jpg' %}" alt="Lisogne" class="img-rounded">
+                                        <img src="{% static 'img/landscape/landscape1.jpg' %}" alt="Lisogne" class="img-rounded">
                                     </div>
                                     <div class="item">
-                                        <img src="{% static 'img/paysage/paysage2.jpg' %}" alt="Lisogne" class="img-rounded">
+                                        <img src="{% static 'img/landscape/landscape2.jpg' %}" alt="Lisogne" class="img-rounded">
                                     </div>
                                     <div class="item">
-                                        <img src="{% static 'img/paysage/paysage3.jpg' %}" alt="Lisogne" class="img-rounded">
+                                        <img src="{% static 'img/landscape/landscape3.jpg' %}" alt="Lisogne" class="img-rounded">
                                     </div>
                                     <div class="item">
-                                        <img src="{% static 'img/paysage/paysage4.jpg' %}" alt="Lisogne" class="img-rounded">
+                                        <img src="{% static 'img/landscape/landscape4.jpg' %}" alt="Lisogne" class="img-rounded">
                                     </div>
                                     <div class="item">
-                                        <img src="{% static 'img/paysage/paysage5.jpg' %}" alt="Lisogne" class="img-rounded">
+                                        <img src="{% static 'img/landscape/landscape5.jpg' %}" alt="Lisogne" class="img-rounded">
                                     </div>
                                 </div>
                             </center>
-                            <!-- Left and right controls-->
-                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
                         </div>
 
                     </div>
                     <div class="col-md-8" >
-                        <br>
-                        <p class="lead">
-                            Jogging convial et familial organisé par l'ASBL Lisogne en Fête en partenariat avec la Mutualité Chrétienne
-                            <img src="{% static 'img/mc.jpg' %}" width="50px;" alt="Logo Mutualité Chrétienne"> </p>
-                        <em>
-                            Tu aimes…
-                            <br><br>
-                            La nature et les grands espaces verts<br>
-                            Respirer le bon air de la campagne<br>
-                            Courir à travers des chemins de terre<br>
-                            <br><br>
-                            …Alors <a class="page-scroll" href="{% url 'registration' %}">inscris toi</a> dès à présent à la 1ère édition du “EoleRUN”. 2 Parcours seront accessibles : 5km et 10km</em>
-
-
-                            <br>
-                            <br>
-                        <div class="row" style="visibility:hidden; display:none;">
-                            <div class="col-md-6">
-                                <div class="panel panel-default">
-                                <div class="panel-body">
-                                    {%trans 'registration'%}
-                                    <hr>
-
-                                    <a href="{% url 'registration' %}" >Lire la suite ...</a>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="panel panel-default">
-                                <div class="panel-body">
-                                    {%trans 'information'%}
-                                    <hr>
-                                    <a href="{% url 'information' %}">Lire la suite ...</a>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-
+                        {% include 'intro.html' %}
                     </div>
                 </div>
                 <br>

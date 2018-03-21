@@ -1,4 +1,4 @@
-{% extends "public/layout.html" %}
+{% extends "layout_website.html" %}
 {% load staticfiles %}
 {% load i18n %}
 {% load bootstrap3 %}
@@ -27,26 +27,35 @@
 
 {% endblock %}
 {% block content %}
+<br>
 <div class="page-header">
-    <h2>{% trans 'individual_registration' %}, confirmation</h2>
+    <h2>{% trans 'individual_registration' %}</h2>
 </div>
 
 <div class="panel panel-default">
     <div class="panel-body">
-        {% if confirmation_message %}
-            <div class="alert alert-info">
-                {{confirmation_message}}
-            </div>
-        {% else %}
-            <div class="alert alert-danger">
-                {% trans 'error_registration' %}
-            </div>
-        {% endif %}
+        <span style="font-weight: bold">
+            {% trans 'registration_instruction' %}
+        </span>
         <br><br>
-
+        {% include 'price.html' %}
     </div>
 </div>
 
+<div class="panel panel-default">
+    <div class="panel-heading"><h2 class="panel-title">{% trans 'registration_form' %}</h2></div>
+    <div class="panel-body">
+        <form method="post" action="{% url 'add_registration' %}">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% bootstrap_form_errors form %}
+            <br>
+            <button type="submit" class="btn btn-primary pull-right" title="{% trans 'save'%}">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"> {% trans 'save'%}</span>
+            </button>
+        </form>
+    </div>
+</div>
 <br>
 <br>
 {% endblock %}

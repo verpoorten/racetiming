@@ -1,7 +1,7 @@
 <!doctype html>
 {% load staticfiles %}
 {% load i18n %}
-
+{% get_current_language as LANGUAGE_CODE %}
 {% comment "License" %}
 * Racetiming is an application designed to manage ranking during running
 * competition.
@@ -112,7 +112,22 @@
                     <li><a class="page-scroll" href="{% url 'information' %}">{% trans 'information' %}</a></li>
                     <li><a class="page-scroll" href="{% url 'rules' %}">{% trans 'rules' %}</a></li>
                     <li><a class="page-scroll" href="{% url 'contact' %}">{% trans 'contact' %}</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false"
+                           id="lnk_my_dropdow_language">{{ LANGUAGE_CODE }}<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            {% for lang in supported_languages%}
+                                {% if lang.0 != LANGUAGE_CODE %}
+                                    <li><a href="{% url 'lang_edit' lang.0 %}">{{ lang.0 }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
                 </ul>
+
             </div>
         </div>
     </nav>
@@ -121,15 +136,15 @@
     <header>
         <div class="container">
             <div class="intro-text">
-                <div class="intro-lead-in">Bienvenue à la 1ière édition de l'Eole Run!</div>
-                <div class="intro-heading">Les sportifs attaquent Lisogne</div>
-                <a href="#introduction" class="page-scroll btn btn-xl">Découvrir</a>
+                <div class="intro-lead-in">{% trans 'intro_lead' %}</div>
+                <div class="intro-heading">{% trans 'intro_heading' %}</div>
+                <a href="#introduction" class="page-scroll btn btn-xl">{% trans 'discover' %}</a>
             </div>
         </div>
     </header>
     {% endblock %}
     <div class="container">
-        <br><br><br>
+        <br><br>
         {% block content %}
         {% endblock %}
     </div>

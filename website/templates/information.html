@@ -1,0 +1,78 @@
+{% extends "layout_website.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% comment "License" %}
+* Racetiming is an application designed to manage ranking during running
+* competition.
+*
+* Copyright (C) 2018 Leïla Verpoorten
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* A copy of this license - GNU General Public License - is available
+* at the root of the source code of this program.  If not,
+* see http://www.gnu.org/licenses/.
+{% endcomment %}
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <br><br>
+    {% if LANGUAGE_CODE == 'en' %}
+        <h2>Organization of the day</h2>
+        Address of the day : Rue du Forbot, 5501 Lisogne
+        <br><br>
+        From 16h00 : Bar – snacks
+        <br><br>
+        16h30 : Welcome – bags room– number withdrawal  (till 17h30)
+        <br>
+        17h30 : Run Kids : +/- 1 km
+        <br><br>
+        18h00 : start for 10 km<br>
+        18h15 : start for 5 km
+        <br><br>
+        19h30 : awards ceremony and tombola
+        <h2>Prix</h2>
+        {% include 'price.html'%}
+        <br>
+        <br>
+
+        <h2>Facilities</h2>
+        Free bags room –  WC – Daycare for children between 17h45 and 19h30
+    {% else %}
+        <h2>Déroulement de la journée</h2>
+        Adresse du jour : Rue du Forbot, 5501 Lisogne
+        <br><br>
+        A partir de 16h00 : Bar – petite restauration
+        <br><br>
+        16h30 : Accueil – consigne – retrait des dossards (jusqu’à 17h30)
+        <br>
+        17h30 : Run Kids : +/- 1 km
+        <br><br>
+        18h00 : Départ des 10 km<br>
+        18h15 : Départ des 5 km
+        <br><br>
+        19h30 : Remise des prix et tombola
+        <h2>Prix</h2>
+        {% include 'price.html'%}
+        <br>
+        <br>
+
+        <h2>Commodités</h2>
+        Consigne gratuite –  WC – Garderie pour les enfants entre 17h45 et 19h30
+    {% endif %}
+</div>
+
+{% endblock %}

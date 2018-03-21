@@ -54,6 +54,13 @@ class RunnerUpdateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(RunnerUpdateForm, self).__init__(*args, **kwargs)
         self.fields['category'].widget.attrs['disabled'] = 'disabled'
+        self.fields['first_name'].label = _('firstname')
+        self.fields['last_name'].label = _('lastname')
+        self.fields['number'].label = _('number_small')
+        self.fields['birth_date'].label = _('birth_date')
+        self.fields['gender'].label = _('gender')
+        self.fields['race'].label = _('race')
+        self.fields['category'].label = _('category')
 
 
 class RunnerInlineForm(forms.ModelForm):
@@ -72,9 +79,13 @@ class RunnerInlineForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(forms.ModelForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].label = _('firstname')
+        self.fields['last_name'].label = _('lastname')
         self.fields['birth_date'].label = _('birth_date')
         self.fields['gender'].label = _('gender')
         self.fields['race'].label = _('race')
+
         self.fields['medical_consent'].widget.attrs['required'] = 'required'
         self.fields['medical_consent'].error_messages = {'required': _('medical_agreement')}
         self.fields['medical_consent'].widget.attrs.update({'class' : 'marginr-10'})
+        self.fields['medical_consent'].label = _('medical_consent')

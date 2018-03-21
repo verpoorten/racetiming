@@ -1,4 +1,4 @@
-{% extends "public/layout.html" %}
+{% extends "layout_website.html" %}
 {% load staticfiles %}
 {% load i18n %}
 
@@ -33,7 +33,12 @@
 
 <div class="panel panel-default">
     <div class="panel-body">
+        {% if LANGUAGE_CODE == 'en' %}
+            <span style="color:gray;">(Sorry there is no English translation yet)</span>
+            <br>
+        {% endif %}
         <h2>Règlement général</h2>
+
         <ul>
             <li>Le jogging est ouvert à toutes et à tous.</li>
             <li>Le montant de la participation est fixé à :</li>

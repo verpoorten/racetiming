@@ -47,7 +47,7 @@ msgid "categories"
 msgstr "Category"
 
 msgid "category"
-msgstr "Catégory"
+msgstr "Category"
 
 msgid "ranking"
 msgstr "Ranking"
@@ -161,7 +161,7 @@ msgid "current"
 msgstr "Actif"
 
 msgid "medical_consent"
-msgstr "Medical consent"
+msgstr "I claim to be in good health and to be fit for the practice of running"
 
 msgid "medical_agreement"
 msgstr "You have to be agree with the medical consent"

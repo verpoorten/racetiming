@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 from django.core.urlresolvers import reverse, reverse_lazy
 import dj_database_url
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,8 +23,6 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-
-
 
 SECRET_KEY = os.environ['SECRET_KEY']
 
@@ -45,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'timing',
     'bootstrap3',
-    'website'
+    'website',
+    'statici18n',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -58,6 +58,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware'
 ]
 
 ROOT_URLCONF = 'racetiming.urls'
@@ -73,12 +74,11 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
             ],
         },
     },
 ]
-
-
 
 WSGI_APPLICATION = 'racetiming.wsgi.application'
 
@@ -96,6 +96,11 @@ LANGUAGE_CODE = 'fr-be'
 
 LANGUAGE_CODE_FR = 'fr-be'
 LANGUAGE_CODE_EN = 'en'
+LANGUAGES = [
+    ('fr-be', _('French')),
+    ('en', _('English')),
+]
+
 TIME_ZONE = 'Europe/Brussels'
 
 USE_I18N = True
