@@ -278,7 +278,6 @@ header {
     color: #fff;
     background-attachment: scroll;
     background-image: url('header_bg.jpg');
-    background-position: center center;
     background-repeat: none;
     -webkit-background-size: cover;
     -moz-background-size: cover;
