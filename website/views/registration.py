@@ -52,7 +52,7 @@ def add_registration(request):
         form.save()
         context = jogging.get_common_data()
         context.update({'confirmation_message': msg})
-        return render(request, "public/registration_confirmation.html",
+        return render(request, "registration_confirmation.html",
                       context)
 
     else:
@@ -61,7 +61,7 @@ def add_registration(request):
         context.update({'runners': Runner.find_all(),
                         'form': form})
 
-        return render(request, "public/registration.html",
+        return render(request, "registration.html",
                       context)
 
 
