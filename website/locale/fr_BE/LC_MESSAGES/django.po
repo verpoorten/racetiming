@@ -23,7 +23,7 @@ msgid "pre-registration"
 msgstr "Pré-inscriptions"
 
 msgid "rules"
-msgstr "Réglement"
+msgstr "Règlement"
 
 msgid "information"
 msgstr "Informations pratiques"

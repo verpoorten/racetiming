@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load bootstrap3 %}
+{% load i18n %}
+{% load duration%}
+{% comment "License" %}
+* Racetiming is an application designed to manage ranking during running
+* competition.
+*
+* Copyright (C) 2018 Leïla Verpoorten
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* A copy of this license - GNU General Public License - is available
+* at the root of the source code of this program.  If not,
+* see http://www.gnu.org/licenses/.
+{% endcomment %}
+
+{% block breadcrumb %}
+<li class="active" id="lnk_ranking">{% trans 'ranking' %}</li>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2>Club {% trans 'ranking' %}</h2>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        {% if clubs %}
+
+                <div class="panel panel-default">
+
+                <div class="panel-body">
+
+                        <table class="table table-striped table-hover">
+                            <thead>
+                            <th>Club</th>
+                            <th>{% trans 'participant_number' %}</th>
+                            </thead>
+                            <tbody>
+                            {% for c in clubs %}
+                                <tr>
+                                <td>{{c.club}}</td>
+                                <td>{{c.nb}}</td>
+                                </tr>
+                            {% endfor%}
+                            </tbody>
+                        </table>
+
+                </div>
+                </div>
+
+
+        {% endif%}
+    </div>
+</div>
+
+
+{% endblock %}

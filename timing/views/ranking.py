@@ -170,3 +170,17 @@ def check_time_difference(t1, t2):
     t_elapsed = t1_date - t2_date
 
     return t_elapsed
+
+
+@login_required
+def by_club(request):
+    clubs = Ranking.find_clubs()
+    participants = []
+    for c in clubs:
+        nb = len(Ranking.find_by_club(c.get('runner__club')))
+        participants.append({'club': c.get('runner__club'), 'nb': nb})
+    context = {'clubs': participants}
+    context.update(get_common_data())
+    # TODO sort
+    return render(request, "ranking/by_club.html",
+                  context)

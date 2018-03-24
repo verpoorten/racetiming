@@ -210,3 +210,6 @@ msgstr "Non-payé"
 
 msgid "xls_list"
 msgstr "Produire une liste Xls des coureurs de la course"
+
+msgid "participant_number"
+msgstr "Nombre de participants"

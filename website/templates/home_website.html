@@ -78,12 +78,8 @@
                 <br>
                 <center>
                     <span class="alert alert-info">
-                        {% if registration_number > 0 %}
-                            {% if registration_number == 1 %}
-                                {{registration_number}} {% trans 'runner_registration_number' %}
-                            {% else %}
-                                {{registration_number}} {% trans 'runners_registration_number' %}
-                            {% endif %}
+                        {% if registration_number > 50 %}
+                            {{registration_number}} {% trans 'runners_registration_number' %}
                         {% else %}
                             {% trans 'be_the_first' %}
                         {% endif %}

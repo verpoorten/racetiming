@@ -27,26 +27,27 @@
 
 {% endblock %}
 {% block content %}
-<div class="page-header">
-    <h2>{% trans 'individual_registration' %}, confirmation</h2>
-</div>
-
-<div class="panel panel-default">
-    <div class="panel-body">
-        {% if confirmation_message %}
-            <div class="alert alert-info">
-                {{confirmation_message}}
-            </div>
-        {% else %}
-            <div class="alert alert-danger">
-                {% trans 'error_registration' %}
-            </div>
-        {% endif %}
-        <br><br>
-
+    <br>
+    <div class="page-header">
+        <h2>{% trans 'individual_registration' %}, confirmation</h2>
     </div>
-</div>
 
-<br>
-<br>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            {% if confirmation_message %}
+                <div class="alert alert-info">
+                    {{confirmation_message}}
+                </div>
+            {% else %}
+                <div class="alert alert-danger">
+                    {% trans 'error_registration' %}
+                </div>
+            {% endif %}
+            <br><br>
+
+        </div>
+    </div>
+
+    <br>
+    <br>
 {% endblock %}

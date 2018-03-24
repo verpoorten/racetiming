@@ -35,11 +35,11 @@ class RunnerForm(forms.ModelForm):
 
     class Meta:
         model = Runner
-        fields = ['first_name', 'last_name', 'gender', 'birth_date', 'number', 'race']
+        fields = ['first_name', 'last_name', 'gender', 'birth_date', 'number', 'race', 'club']
 
     def __init__(self, *args, **kwargs):
         super(forms.ModelForm, self).__init__(*args, **kwargs)
-        self.fields['number'].required = True
+        # self.fields['number'].required = True
 
 
 class RunnerUpdateForm(forms.ModelForm):
@@ -49,7 +49,7 @@ class RunnerUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Runner
-        fields = ['first_name', 'middle_name', 'last_name', 'gender', 'birth_date', 'number', 'category', 'race']
+        fields = ['first_name', 'middle_name', 'last_name', 'gender', 'birth_date', 'number', 'category', 'race', 'club']
 
     def __init__(self, *args, **kwargs):
         super(RunnerUpdateForm, self).__init__(*args, **kwargs)
@@ -75,7 +75,7 @@ class RunnerInlineForm(forms.ModelForm):
 
     class Meta:
         model = Runner
-        fields = ['first_name', 'last_name', 'gender', 'birth_date', 'race',  'medical_consent']
+        fields = ['first_name', 'last_name', 'gender', 'birth_date', 'race',  'medical_consent', 'club']
 
     def __init__(self, *args, **kwargs):
         super(forms.ModelForm, self).__init__(*args, **kwargs)
@@ -87,5 +87,5 @@ class RunnerInlineForm(forms.ModelForm):
 
         self.fields['medical_consent'].widget.attrs['required'] = 'required'
         self.fields['medical_consent'].error_messages = {'required': _('medical_agreement')}
-        self.fields['medical_consent'].widget.attrs.update({'class' : 'marginr-10'})
+        self.fields['medical_consent'].widget.attrs.update({'class': 'marginr-10'})
         self.fields['medical_consent'].label = _('medical_consent')

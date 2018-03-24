@@ -95,6 +95,17 @@ class Ranking(models.Model):
     def find_all_order(field_order):
         return Ranking.objects.all().order_by(field_order)
 
+
+    def find_clubs():
+        # return Ranking.objects.all().distinct('runner__club')
+        return Ranking.objects.values('runner__club').distinct()
+
+
+    def find_by_club(club_name):
+        return Ranking.objects.filter(runner__club=club_name)
+
+
+
 def diff_in_minutes(start, end):
     startdelta = datetime.timedelta(hours=start.hour, minutes=start.minute, seconds=start.second)
     enddelta = datetime.timedelta(hours=end.hour, minutes=end.minute, seconds=end.second)
@@ -110,3 +121,5 @@ def get_ranking(result_for_category, the_runner):
             cpt = cpt + 1
     else:
         return None
+
+

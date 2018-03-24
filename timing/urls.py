@@ -65,6 +65,7 @@ urlpatterns = [
         url(r'^$', ranking.ranking, name='ranking'),
         url(r'^add/$', ranking.add_ranking, name='add_ranking'),
         url(r'^podium/$', ranking.podium, name='podium'),
+        url(r'^club/$', ranking.by_club, name='by_club'),
         url(r'^delete/([0-9]+)/$', ranking.delete_ranking, name='delete_ranking'),
         url(r'^general/([0-9]+)/$', ranking.general_ranking, name='general_ranking'),
         url(r'^delete/general/([0-9]+)/$', ranking.delete_on_general, name='delete_ranking_general'),

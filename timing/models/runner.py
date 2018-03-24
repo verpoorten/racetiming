@@ -51,6 +51,7 @@ class Runner(models.Model):
                                  verbose_name=_('category'))
     race = models.ForeignKey('Race', blank=True, null=True, on_delete=models.DO_NOTHING, verbose_name=_('race'))
     medical_consent = models.BooleanField(default=False, verbose_name=_('medical_consent'))
+    club = models.CharField(max_length=50, blank=True, null=True, verbose_name='Club')
 
     def __str__(self):
         return "{}, {}".format(self.last_name, self.first_name)

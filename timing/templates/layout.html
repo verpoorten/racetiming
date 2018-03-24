@@ -123,6 +123,8 @@
                                 <li><a href="{% url 'general_ranking' race.id %}"
                                        id="lnk_dropdown_ranking_general_{{race.id}}">{% trans 'general_ranking'%} - {{race.description}} {{race.distance}} {{race.unit}}</a></li>
                             {% endfor %}
+                            <li><a href="{% url 'by_club' %}"
+                                   id="lnk_dropdown_club">{% trans 'club'%}</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

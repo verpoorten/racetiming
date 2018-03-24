@@ -40,7 +40,7 @@
             <tr>
                 <th>{% trans 'lastname' %}</th>
                 <th>{% trans 'firstname' %}</th>
-                <th>{% trans 'number'%}</th>
+                <th>{% trans 'number_small'%}</th>
                 <th>{% trans 'birth_date' %}</th>
                 <th>{% trans 'category' %}</th>
                 <th>{% trans 'race' %}</th>
@@ -52,7 +52,7 @@
             <tr {% if r.gender == 'F' %}style="font-weight: bold"{% endif %}>
             <td><a href="{% url 'update_runner' r.id%}">{{r.last_name }}</a></td>
             <td>{{r.first_name}}</td>
-            <td>{{r.number}}</td>
+            <td>{{r.number| default_if_none:'' }}</td>
             <td>{{r.birth_date|date:"j/m/Y" }}</td>
             <td>{{r.category }}</td>
             <td>{{r.race }}</td>
