@@ -91,19 +91,15 @@ class Ranking(models.Model):
 
         super(Ranking, self).save(*args, **kwargs)
 
-
     def find_all_order(field_order):
         return Ranking.objects.all().order_by(field_order)
-
 
     def find_clubs():
         # return Ranking.objects.all().distinct('runner__club')
         return Ranking.objects.values('runner__club').distinct()
 
-
     def find_by_club(club_name):
         return Ranking.objects.filter(runner__club=club_name)
-
 
 
 def diff_in_minutes(start, end):

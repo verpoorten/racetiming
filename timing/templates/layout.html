@@ -108,8 +108,6 @@
                         <ul class="dropdown-menu">
                             <li><a href="{% url 'ranking' %}"
                                    id="lnk_dropdown_ranking">{% trans 'ranking_update'%}</a></li>
-                            <li><a href="{% url 'podium' %}"
-                                   id="lnk_dropdown_podium">{% trans 'podium'%}</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -119,12 +117,14 @@
                            id="lnk_home_dropdown_ranking">{% trans 'ranking' %}<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
+                            <li><a href="{% url 'podium' %}"
+                                   id="lnk_dropdown_podium">{% trans 'podium'%}</a></li>
                             {% for race in current_races %}
                                 <li><a href="{% url 'general_ranking' race.id %}"
                                        id="lnk_dropdown_ranking_general_{{race.id}}">{% trans 'general_ranking'%} - {{race.description}} {{race.distance}} {{race.unit}}</a></li>
                             {% endfor %}
                             <li><a href="{% url 'by_club' %}"
-                                   id="lnk_dropdown_club">{% trans 'club'%}</a></li>
+                                   id="lnk_dropdown_club">{% trans 'ranking'%} {% trans 'by_club'%}</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -136,6 +136,20 @@
                         <ul class="dropdown-menu">
                             <li><a href="{% url 'category_list' %}"
                                    id="lnk_dropdown_category_list">{% trans 'list'%}</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false"
+                           id="lnk_my_dropdow_language">{{ LANGUAGE_CODE }}<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            {% for lang in supported_languages%}
+                                {% if lang.0 != LANGUAGE_CODE %}
+                                    <li><a href="{% url 'lang_edit' lang.0 %}">{{ lang.0 }}</a></li>
+                                {% endif %}
+                            {% endfor %}
                         </ul>
                     </li>
                     <li><a href="{% url 'logout' %}" id="lnk_logout"><span class="glyphicon glyphicon-unlock"

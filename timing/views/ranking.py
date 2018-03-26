@@ -179,8 +179,13 @@ def by_club(request):
     for c in clubs:
         nb = len(Ranking.find_by_club(c.get('runner__club')))
         participants.append({'club': c.get('runner__club'), 'nb': nb})
-    context = {'clubs': participants}
+
+    print(participants)
+    participant_sorted = sorted(participants, key=lambda t: t.get('nb'), reverse=True)
+    print(participant_sorted)
+    context = {'clubs': participant_sorted}
     context.update(get_common_data())
+
     # TODO sort
     return render(request, "ranking/by_club.html",
                   context)

@@ -219,3 +219,9 @@ msgstr "Produle an XLS list of the runner"
 
 msgid "participant_number"
 msgstr "Number of participants"
+
+msgid "club"
+msgstr "Club"
+
+msgid "by_club"
+msgstr "by club"

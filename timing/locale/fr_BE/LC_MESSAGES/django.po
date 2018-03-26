@@ -213,3 +213,9 @@ msgstr "Produire une liste Xls des coureurs de la course"
 
 msgid "participant_number"
 msgstr "Nombre de participants"
+
+msgid "club"
+msgstr "Club"
+
+msgid "by_club"
+msgstr "par club"

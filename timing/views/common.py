@@ -26,6 +26,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import login as django_login
 from django.utils import translation
 from django.shortcuts import redirect
+from django.conf import settings
 
 
 @login_required
@@ -35,7 +36,9 @@ def index(request):
 
 
 def get_common_data():
-    return {"current_races": Race.find_all_current()}
+    return {"current_races": Race.find_all_current(),
+            'supported_languages': settings.LANGUAGES,
+            'default_language': settings.LANGUAGE_CODE}
 
 
 def login(request):

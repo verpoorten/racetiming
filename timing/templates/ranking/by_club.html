@@ -30,19 +30,15 @@
 {% endblock %}
 
 {% block content %}
-<div class="page-header">
-    <h2>Club {% trans 'ranking' %}</h2>
-</div>
+    <div class="page-header">
+        <h2>Club {% trans 'ranking' %}</h2>
+    </div>
 
-<div class="panel panel-default">
-    <div class="panel-body">
-
-        {% if clubs %}
-
+    <div class="panel panel-default">
+        <div class="panel-body">
+            {% if clubs %}
                 <div class="panel panel-default">
-
-                <div class="panel-body">
-
+                    <div class="panel-body">
                         <table class="table table-striped table-hover">
                             <thead>
                             <th>Club</th>
@@ -51,20 +47,15 @@
                             <tbody>
                             {% for c in clubs %}
                                 <tr>
-                                <td>{{c.club}}</td>
-                                <td>{{c.nb}}</td>
+                                    <td>{{c.club}}</td>
+                                    <td>{{c.nb}}</td>
                                 </tr>
                             {% endfor%}
                             </tbody>
                         </table>
-
+                    </div>
                 </div>
-                </div>
-
-
-        {% endif%}
+            {% endif%}
+        </div>
     </div>
-</div>
-
-
 {% endblock %}
