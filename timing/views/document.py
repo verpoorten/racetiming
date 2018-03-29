@@ -31,24 +31,25 @@ from django.utils.translation import ugettext_lazy as _
 @login_required
 def build_document(request, race_id):
     a_race = get_object_or_404(Race, id=race_id)
-    workingsheets_data = prepare_xls_content(Runner.find_by_race(a_race))
-    return xls_build.generate_xls(prepare_xls_parameters_list(request.user, workingsheets_data, a_race))
+    working_sheet_data = prepare_xls_content(Runner.find_by_race(a_race))
+    return xls_build.generate_xls(prepare_xls_parameters_list(request.user, working_sheet_data, a_race))
 
 
 def prepare_xls_content(records):
     return [_extract_xls_data_from_runner(runner) for runner in records]
 
 
-def prepare_xls_parameters_list(user, workingsheets_data, a_race):
-    return {xls_build.LIST_DESCRIPTION_KEY: "Liste d'activités",
+def prepare_xls_parameters_list(user, working_sheet_data, a_race):
+    return {xls_build.LIST_DESCRIPTION_KEY: str(_('runners_list')),
             xls_build.FILENAME_KEY: _('runners'),
             xls_build.USER_KEY: user,
             xls_build.WORKSHEETS_DATA:
-                [{xls_build.CONTENT_KEY: workingsheets_data,
+                [{xls_build.CONTENT_KEY: working_sheet_data,
                   xls_build.HEADER_TITLES_KEY: [str(_('lastname')),
                                                 str(_('firstname')),
-                                                "{} - {} {} {}".format(str(_('number_small')), str(a_race.description), str(a_race.distance), str(a_race.unit)),
+                                                _get_number_race_title(a_race),
                                                 str(_('category')),
+                                                str(_('birth_date')),
                                                 str(_('status'))
 
                                                 ],
@@ -57,11 +58,19 @@ def prepare_xls_parameters_list(user, workingsheets_data, a_race):
                  ]}
 
 
+def _get_number_race_title(a_race):
+    return "{} - {} {} {}".format(str(_('number_small')),
+                                  str(a_race.description),
+                                  str(a_race.distance),
+                                  str(a_race.unit))
+
+
 def _extract_xls_data_from_runner(a_runner):
-    return [a_runner.last_name, a_runner.first_name, a_runner.number, a_runner.category, get_attention(a_runner.payment_status)]
+    return [a_runner.last_name, a_runner.first_name, a_runner.number, a_runner.category,
+            a_runner.birth_date.strftime('%d-%m-%Y'), get_attention(a_runner.payment_status)]
 
 
 def get_attention(status):
     if not status:
-        return _('unpayed')
+        return str(_('unpayed'))
     return ''

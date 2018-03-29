@@ -219,3 +219,6 @@ msgstr "Club"
 
 msgid "by_club"
 msgstr "par club"
+
+msgid "runners_list"
+msgstr "Liste des coureurs"
