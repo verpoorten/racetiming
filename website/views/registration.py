@@ -41,14 +41,17 @@ def add_registration(request):
         if race_id:
             race = get_object_or_404(Race, id=race_id)
             if race:
-                if race.bank_account:
-                    bank_account = race.bank_account
-                if race.price:
-                    price = race.price
-                if bank_account and price:
-                    msg = "{}.".format((_('registration_confirmation')
-                                                             % (race.presale_price,
-                                                                race.bank_account)))
+                if race.pre_registration:
+                    if race.bank_account:
+                        bank_account = race.bank_account
+                    if race.price:
+                        price = race.price
+                    if bank_account and price:
+                        msg = "{}.".format((_('registration_confirmation')
+                                                                 % (race.presale_price,
+                                                                    race.bank_account)))
+                    else:
+                        msg = "{}.".format(_('registered_msg'))
         form.save()
         context = jogging.get_common_data()
         context.update({'confirmation_message': msg})
@@ -56,7 +59,6 @@ def add_registration(request):
                       context)
 
     else:
-        print('invalid')
         context = jogging.get_common_data()
         context.update({'runners': Runner.find_all(),
                         'form': form})

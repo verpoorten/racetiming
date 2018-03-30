@@ -70,7 +70,7 @@ class RunnerInlineForm(forms.ModelForm):
 
     gender = forms.ChoiceField(choices=gender.GENDER_CHOICES, required=True)
 
-    race = forms.ModelChoiceField(queryset=Race.find_all_current_pre_registration(),
+    race = forms.ModelChoiceField(queryset=Race.find_all_current_pre_registration_order_by_distance(),
                                   widget=forms.Select(), required=True, empty_label=None)
 
     class Meta:

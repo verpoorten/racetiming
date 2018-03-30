@@ -47,12 +47,12 @@
                 </thead>
                 <tbody>
                 {% for r in runners %}
-                    <tr {% if not r.payment_status %}style="color:#c2c2d6;"{% endif%}>
+                    <tr {% if r.race.is_free %}{% else %} {% if not r.payment_status %}style="color:#c2c2d6;"{% endif%}{% endif%}>
                         <td>{{r.last_name }}</td>
                         <td>{{r.first_name}}</td>
                         <td>{{r.category }}</td>
                         <td>{{r.race.distance }} {{r.race.unit }}</td>
-                        <th>{% if r.payment_status %}{% trans 'payment_ok' %}{% else %}{% trans 'payment_ko' %}{% endif %}</th>
+                        <th>{% if r.race.is_free %}{% trans 'free' %}{% else %}{% if r.payment_status %}{% trans 'payment_ok' %}{% else %}{% trans 'payment_ko' %}{% endif %}{% endif %}</th>
                     </tr>
                 {% endfor%}
                 </tbody>

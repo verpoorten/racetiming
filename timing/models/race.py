@@ -40,7 +40,7 @@ class Race(models.Model):
     pre_registration = models.BooleanField(default=False, verbose_name=_('pre-registration'))
     presale_price = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True,
                                         verbose_name=_('presale_price'))
-    bank_account = models.CharField(max_length=30, verbose_name=_('bank_account'))
+    bank_account = models.CharField(max_length=30, verbose_name=_('bank_account'), blank=True, null=True)
     ended = models.BooleanField(default=False, verbose_name=_('ended'))
 
     def __str__(self):
@@ -63,6 +63,12 @@ class Race(models.Model):
 
         return len(available_ranking)
 
+    @property
+    def is_free(self):
+        if self.pre_registration and not self.bank_account and (self.price is None or self.price == 0):
+            return True
+        return False
+
     def find_by_id(an_id):
         try:
             return Race.objects.get(pk=an_id)
@@ -77,6 +83,9 @@ class Race(models.Model):
 
     def find_all_current_pre_registration():
         return Race.objects.filter(current=True, pre_registration=True, ended=False).order_by('race_start')
+
+    def find_all_current_pre_registration_order_by_distance():
+        return Race.objects.filter(current=True, pre_registration=True, ended=False).order_by('-distance')
 
     def find_started_race():
         races = Race.objects.filter(current=True).order_by('race_start')

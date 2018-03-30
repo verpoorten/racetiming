@@ -40,7 +40,7 @@
     <link rel="stylesheet" href="{% static 'css/custom.css' %}?version={{ js }}">
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/dataTables.bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/dataTables.bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datetimepicker.min.css' %}" type='text/css'>
     {% block header %}
     {% endblock %}
 
@@ -69,6 +69,8 @@
                 </button>
                 <a class="navbar-brand" href="{% url 'home' %}" id="lnk_home"><img
                         src="{% static 'img/logo.ico' %}" style="margin-top: -10px;height:40px;"></a>
+                <a class="navbar-brand" href="{% url 'website_home' %}" id="lnk_home" title="Website"><img
+                        src="{% static 'img/link_web.png' %}" style="margin-top: -10px;height:40px;"></a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
@@ -179,7 +181,6 @@
 
     <script src="{% static "js/jquery-2.1.4.min.js" %}"></script>
     <script src="{% static "js/bootstrap.min.js" %}"></script>
-    <script src="{% static "js/custom.js" %}"></script>
     <script src="{% static "js/jquery.dataTables.min.js" %}"></script>
     <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
     <script src="{% static 'js/locales/bootstrap-datepicker.fr.js' %}"></script>
@@ -188,7 +189,6 @@
     <script type="text/javascript" src="{% static 'js/jquery.dataTables.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/dataTables.bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/diacritics-sort.js' %}"></script>
-
 
     {% block script %}
     {% endblock %}

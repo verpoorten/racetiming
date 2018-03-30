@@ -99,3 +99,9 @@ msgstr "Féminin"
 
 msgid "registration_instruction"
 msgstr "Veuillez remplir le formulaire ci-dessous pour vous inscrire au jogging de Lisogne du samedi 2 juin 2018"
+
+msgid "registered_msg"
+msgstr "Pré-inscription encodée pour une course gratuite"
+
+msgid "free"
+msgstr "Gratuit"

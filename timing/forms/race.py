@@ -32,7 +32,8 @@ class RaceForm(forms.ModelForm):
 
     class Meta:
         model = Race
-        fields = ['description', 'distance', 'unit', 'race_start', 'price', 'bank_account', 'presale_price', 'current']
+        fields = ['description', 'distance', 'unit', 'race_start', 'price', 'bank_account', 'presale_price', 'current',
+                  'pre_registration']
 
 
 class RaceUpdateForm(forms.ModelForm):
@@ -42,7 +43,8 @@ class RaceUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Race
-        fields = ['description',  'distance', 'unit', 'race_start', 'price', 'bank_account', 'presale_price', 'current']
+        fields = ['description',  'distance', 'unit', 'race_start', 'price', 'bank_account', 'presale_price',
+                  'current', 'pre_registration']
 
     def __init__(self, *args, **kwargs):
         super(RaceUpdateForm, self).__init__(*args, **kwargs)

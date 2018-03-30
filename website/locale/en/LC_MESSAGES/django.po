@@ -99,4 +99,8 @@ msgstr "Female"
 msgid "registration_instruction"
 msgstr "Please fill-in the form bellow to register to the Eole Run of the 2 june 2018"
 
+msgid "registered_msg"
+msgstr "You're know pre-registered for your FREE race"
 
+msgid "free"
+msgstr "Free"
