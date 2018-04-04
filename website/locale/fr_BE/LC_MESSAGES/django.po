@@ -71,7 +71,7 @@ msgid "error_registration"
 msgstr "Erreur lors de votre inscription.  Merci de nous envoyer vos nom, prénom, date de naissance, genre et la distance à laquelle vous voulez vous inscrire. Voici notre email: %s."
 
 msgid "be_the_first"
-msgstr "Soyiez le premier à vous inscrire"
+msgstr "Sois le premier à t'inscrire"
 
 msgid "last_update"
 msgstr "dernière mise à jour le"
@@ -105,3 +105,6 @@ msgstr "Pré-inscription encodée pour une course gratuite"
 
 msgid "free"
 msgstr "Gratuit"
+
+msgid "registrations"
+msgstr "Inscriptions"

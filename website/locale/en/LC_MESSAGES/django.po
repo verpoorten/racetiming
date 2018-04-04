@@ -104,3 +104,6 @@ msgstr "You're know pre-registered for your FREE race"
 
 msgid "free"
 msgstr "Free"
+
+msgid "registrations"
+msgstr "Registrations"

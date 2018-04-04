@@ -78,10 +78,10 @@
                 <br>
                 <center>
                     <span class="alert alert-info">
-                        {% if registration_number > 50 %}
+                        {% if registration_number > 0 %}
                             {{registration_number}} {% trans 'runners_registration_number' %}
                         {% else %}
-                            {% trans 'be_the_first' %}
+                            <a href="{% url 'registration' %}"> {% trans 'be_the_first' %}</a>
                         {% endif %}
                     </span>
                     <br>
