@@ -50,7 +50,7 @@ class Payment(models.Model):
         return 0
 
     def last_update():
-        res = Payment.objects.all().order_by('-payment_date')
+        res = Payment.objects.all().order_by('payment_date')
         if res:
             return res.last().payment_date
         return None
