@@ -35,18 +35,15 @@ def generate_start_date(runner):
     return datetime.date(timezone.now().year, 9, 30)
 
 
-
 class RunnerFactory(factory.DjangoModelFactory):
     class Meta:
         model = 'timing.Runner'
 
-
     first_name = factory.Faker('first_name')
     last_name = factory.Faker('last_name')
-    gender =  factory.Iterator(GENDER_CHOICES,
-                               getter=operator.itemgetter(0))
+    gender = factory.Iterator(GENDER_CHOICES, getter=operator.itemgetter(0))
     birth_date = factory.LazyAttribute(generate_start_date)
-    number = factory.fuzzy.FuzzyInteger(1, 5)
+    number = factory.fuzzy.FuzzyInteger(1, 100)
     category = factory.SubFactory(CategoryFactory)
     race = factory.SubFactory(RaceFactory)
     medical_consent = False

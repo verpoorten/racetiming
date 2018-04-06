@@ -95,7 +95,6 @@ class Ranking(models.Model):
         return Ranking.objects.all().order_by(field_order)
 
     def find_clubs():
-        # return Ranking.objects.all().distinct('runner__club')
         return Ranking.objects.values('runner__club').distinct()
 
     def find_by_club(club_name):

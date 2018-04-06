@@ -229,3 +229,14 @@ msgstr "by club"
 msgid "runners_list"
 msgstr "Runners liste"
 
+msgid "club_finishers"
+msgstr "Number of runners by club(finishers)"
+
+msgid "no_data"
+msgstr "No data !"
+
+msgid "finishers_nb"
+msgstr "Number of finishers"
+
+msgid "current_hlp"
+msgstr "Active means that if there is preregistration it is possible and that the race can start"

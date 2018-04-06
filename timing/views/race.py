@@ -50,13 +50,11 @@ def race_new(request):
 
 @login_required
 def race_create(request):
-    print('race_create')
     return race_add(request, None)
 
 
 @login_required
 def race_add(request, race_id):
-    print('race_add')
     if race_id:
         instance = get_object_or_404(Race, id=race_id)
         page_html = "race/modification.html"
@@ -67,11 +65,9 @@ def race_add(request, race_id):
     form = RaceForm(request.POST or None, instance=instance)
 
     if form.is_valid():
-        print('form valid')
         form.save()
         return HttpResponseRedirect(reverse('race_list', ))
     else:
-        print('form invalid')
         context = {'form': form}
         context.update(get_common_data())
         return render(request, page_html,

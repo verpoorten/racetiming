@@ -27,26 +27,24 @@
 {% endblock %}
 
 {% block content %}
-cre
-<form method="post" action="{% url 'create_race' %}">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    {% bootstrap_form_errors form %}
-    <br>
-    <button type="submit" class="btn btn-primary pull-right" title="{% trans 'save'%}">
-        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"> {% trans 'save'%}</span>
-    </button>
-</form>
+    <form method="post" action="{% url 'create_race' %}">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% bootstrap_form_errors form %}
+        <br>
+        <button type="submit" class="btn btn-primary pull-right" title="{% trans 'save'%}">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"> {% trans 'save'%}</span>
+        </button>
+    </form>
 {% endblock %}
 
 {% block script %}
     <script>
-    $("#id_race_start_0").datepicker({
-    autoclose: true,
-    orientation: "bottom auto",
-    language: "fr",
-    showOtherMonths: false
-    });
+        $("#id_race_start_0").datepicker({
+        autoclose: true,
+        orientation: "bottom auto",
+        language: "fr",
+        showOtherMonths: false
+        });
     </script>
-
 {% endblock %}

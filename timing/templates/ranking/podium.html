@@ -39,31 +39,32 @@
 
         {% if results %}
             {% for r in results %}
-        <div class="panel panel-default">
-            <div class="panel-heading"><span class="color-{{forloop.counter0}}">{{ r.race }} - {{ r.category }} {{ret_period}}</span></div>
-        <div class="panel-body">
-                {% if r.runners%}
-                    <table class="table table-striped table-hover">
-                        <thead>
-                        <th></th>
-                        <th>{% trans 'name' %}</th>
-                        <th>{% trans 'race' %}</th>
-                        </thead>
-                        <tbody>
-                        {% for r in r.runners %}
-                            <tr {% if r.gender == 'F' %}style="font-weight: bold"{% endif %}>
-                            <td>{{ forloop.counter }}</td>
-                            <td>{{r.last_name }}, {{r.first_name}}</td>
-                            <td>{{r.race }}</td>
-                            </tr>
-                        {% endfor%}
-                        </tbody>
-                    </table>
-                {% endif%}
-            </div>
-            </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading"><span class="color-{{forloop.counter0}}">{{ r.race }} - {{ r.category }} - {{ r.category.gender }}</span></div>
+                <div class="panel-body">
+                    {% if r.finishers%}
+                        <table class="table">
+                            <thead>
+                            <th>Place</th>
+                            <th>{% trans 'lastname' %}</th>
+                            <th>Time</th>
+                            </thead>
+                            <tbody>
+                            {% for r in r.finishers %}
+                                <tr {% if r.gender == 'F' %}style="font-weight: bold"{% endif %}>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{r.last_name }}, {{r.first_name}}</td>
+                                    <td>{{ r.time_race |duration }}</td>
+                                </tr>
+                            {% endfor%}
+                            </tbody>
+                        </table>
+                    {% endif%}
+                </div>
+                </div>
             {% endfor%}
-
+        {% else %}
+            <div class="alert alert-info">{% trans 'no_data' %}</div>
         {% endif%}
     </div>
 </div>

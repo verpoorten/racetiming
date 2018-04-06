@@ -23,6 +23,7 @@
 from django import forms
 from timing.models.race import Race
 from timing.forms.utils.datefield import DateTimePickerInput
+from django.utils.translation import ugettext as _
 
 
 class RaceForm(forms.ModelForm):
@@ -34,17 +35,12 @@ class RaceForm(forms.ModelForm):
         model = Race
         fields = ['description', 'distance', 'unit', 'race_start', 'price', 'bank_account', 'presale_price', 'current',
                   'pre_registration']
+        help_texts = {
+            'current': _('current_hlp'),
+        }
 
 
-class RaceUpdateForm(forms.ModelForm):
-
-    race_start = forms.SplitDateTimeField(widget=DateTimePickerInput(),
-                                          required=False)
-
-    class Meta:
-        model = Race
-        fields = ['description',  'distance', 'unit', 'race_start', 'price', 'bank_account', 'presale_price',
-                  'current', 'pre_registration']
+class RaceUpdateForm(RaceForm):
 
     def __init__(self, *args, **kwargs):
         super(RaceUpdateForm, self).__init__(*args, **kwargs)

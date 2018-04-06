@@ -44,6 +44,7 @@
                 <th>{% trans 'birth_date' %}</th>
                 <th>{% trans 'category' %}</th>
                 <th>{% trans 'race' %}</th>
+                <th>{% trans 'club' %}</th>
 
             </tr>
             </thead>
@@ -56,6 +57,7 @@
             <td>{{r.birth_date|date:"j/m/Y" }}</td>
             <td>{{r.category }}</td>
             <td>{{r.race }}</td>
+            <td>{{r.club| default_if_none:''  }}</td>
             </tr>
             {% endfor%}
             </tbody>

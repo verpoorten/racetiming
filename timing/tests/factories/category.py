@@ -44,6 +44,5 @@ class CategoryFactory(factory.DjangoModelFactory):
     label = factory.Sequence(lambda n: 'Category - %d' % n)
     start_date = factory.LazyAttribute(generate_start_date)
     end_date = factory.LazyAttribute(generate_end_date)
-    gender =  factory.Iterator(GENDER_CHOICES,
-                               getter=operator.itemgetter(0))
+    gender = factory.Iterator(GENDER_CHOICES, getter=operator.itemgetter(0))
 

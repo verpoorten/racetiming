@@ -27,7 +27,6 @@
 {% endblock %}
 
 {% block content %}
-    {{ runner.id }}
     <form method="post"
           action="{% url 'add_runner' runner.id %}">
         {% include 'runner/form_content.html' %}

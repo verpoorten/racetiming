@@ -222,3 +222,15 @@ msgstr "par club"
 
 msgid "runners_list"
 msgstr "Liste des coureurs"
+
+msgid "club_finishers"
+msgstr "Nombre de finishers par club"
+
+msgid "no_data"
+msgstr "Pas de résultat !"
+
+msgid "finishers_nb"
+msgstr "Nombre de finishers"
+
+msgid "current_hlp"
+msgstr "Actif signifie que s'il y a des pré-inscriptions elles sont possibles en ligne et que la course pourra commencer au moment voulut"

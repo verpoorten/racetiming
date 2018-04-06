@@ -33,6 +33,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext as _
 from django.utils import timezone
+from timing.business.ranking import get_nb_finishers_by_club_order_by_desc_nb, get_podium_by_race_category
 
 
 @login_required
@@ -48,11 +49,10 @@ def ranking(request):
 @login_required
 def add_ranking(request):
     form = RankingForm(request.POST or None)
-    context = {'form': form, 'rankings': Ranking.find_all().order_by('checkin')}
+    context = {'form': form, 'rankings': Ranking.find_all().order_by('-checkin')}
     if form.is_valid():
         a_runner = Runner.find_by_number_started_race(request.POST.get('number', None))
         if a_runner:
-
             a_new_ranking = Ranking(runner=a_runner,
                                     checkin=timezone.now())
             # an_existing_ranking = Ranking.find_by_runner(a_runner)
@@ -72,30 +72,7 @@ def add_ranking(request):
 
 @login_required
 def podium(request):
-    resultats = []
-    races = Race.find_all()
-    for r in races:
-        rankings = Ranking.find_by_race(r)
-
-        cats = []
-        for ranking in rankings:
-            if ranking.runner.category not in cats:
-                cats.append(ranking.runner.category)
-
-        for c in cats:
-            rankings = Ranking.find_by_category_race(c, r).order_by('checkin')
-            runners = []
-            cpt = 0
-            for rank in rankings:
-                if rank.runner not in runners:
-                    runners.append(rank.runner)
-                    cpt = cpt + 1
-                    if cpt == 3:
-                        break
-
-            resultats.append({"race": r, "category": c, "runners": list(runners)})
-
-    context = {'results': resultats}
+    context = {'results': get_podium_by_race_category(Race.find_all())}
     context.update(get_common_data())
     return render(request, "ranking/podium.html",
                   context)
@@ -174,18 +151,9 @@ def check_time_difference(t1, t2):
 
 @login_required
 def by_club(request):
-    clubs = Ranking.find_clubs()
-    participants = []
-    for c in clubs:
-        nb = len(Ranking.find_by_club(c.get('runner__club')))
-        participants.append({'club': c.get('runner__club'), 'nb': nb})
-
-    print(participants)
-    participant_sorted = sorted(participants, key=lambda t: t.get('nb'), reverse=True)
-    print(participant_sorted)
-    context = {'clubs': participant_sorted}
+    context = {'clubs': get_nb_finishers_by_club_order_by_desc_nb()}
     context.update(get_common_data())
 
-    # TODO sort
     return render(request, "ranking/by_club.html",
                   context)
+

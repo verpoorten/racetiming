@@ -33,8 +33,7 @@ class RaceFactory(factory.DjangoModelFactory):
     description = factory.Sequence(lambda n: 'description - %d' % n)
 
     distance = factory.fuzzy.FuzzyDecimal(0, 100)
-    unit = factory.Iterator(UNIT_CHOICES,
-                                getter=operator.itemgetter(0))
+    unit = factory.Iterator(UNIT_CHOICES, getter=operator.itemgetter(0))
     race_start = None
     accurate_race_start = None
     current = False

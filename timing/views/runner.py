@@ -54,7 +54,6 @@ def runner_create(request):
 
 @login_required
 def runner_add(request, runner_id):
-    print('runner_add')
     if runner_id:
         instance = get_object_or_404(Runner, id=runner_id)
         form = RunnerUpdateForm(request.POST or None, instance=instance)
@@ -63,16 +62,12 @@ def runner_add(request, runner_id):
         instance = None
         form = RunnerForm(request.POST or None, instance=instance)
 
-
         page_html = "runner/creation.html"
 
-
     if form.is_valid():
-        print('form valid')
         form.save()
         return HttpResponseRedirect(reverse('runner_list', ))
     else:
-        print('form invalid')
         context = {'form': form, 'runner': instance}
         context.update(get_common_data())
         return render(request, page_html,
