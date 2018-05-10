@@ -1,0 +1,65 @@
+{% extends "layout_website.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% comment "License" %}
+* Racetiming is an application designed to manage ranking during running
+* competition.
+*
+* Copyright (C) 2018 Leïla Verpoorten
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* A copy of this license - GNU General Public License - is available
+* at the root of the source code of this program.  If not,
+* see http://www.gnu.org/licenses/.
+{% endcomment %}
+
+{% block header %}
+
+{% endblock %}
+{% block content %}
+<br>
+<div class="page-header">
+    <h2>{% trans 'sponsors_thanks' %}</h2>
+</div>
+    <br>
+<div class="panel panel-default">
+    <div class="panel-body">
+
+
+        <div id="myCarousel" class="carousel slide" data-ride="carousel"  data-interval="1500">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <center>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="{% static 'img/sponsors/dreamland.png' %}" alt="Lisogne" class="img-rounded" >
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'img/sponsors/poiletplumes.png' %}" alt="Lisogne" class="img-rounded">
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'img/sponsors/cocacola.png' %}" alt="Lisogne" class="img-rounded">
+                    </div>
+                </div>
+            </center>
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}

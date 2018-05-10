@@ -108,3 +108,6 @@ msgstr "Gratuit"
 
 msgid "registrations"
 msgstr "Inscriptions"
+
+msgid "sponsors_thanks"
+msgstr "Merci à nos sponsors!"

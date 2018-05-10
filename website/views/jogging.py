@@ -73,3 +73,9 @@ def get_common_data():
             'supported_languages': settings.LANGUAGES,
             'default_language': settings.LANGUAGE_CODE,
             }
+
+def sponsors(request):
+    context = {'form': RunnerInlineForm()}
+    context.update(get_common_data())
+    return render(request, "sponsors.html",
+                  context)

@@ -13,6 +13,6 @@ urlpatterns = (
     url(r'^preregistration/$', jogging.pre_registration, name='pre_registration'),
     url(r'^registration/$', jogging.registration, name='registration'),
     url(r'^registration/add/$', registration.add_registration, name='add_registration'),
-
+    url(r'^sponsors/$', jogging.sponsors, name='sponsors'),
 
 )
