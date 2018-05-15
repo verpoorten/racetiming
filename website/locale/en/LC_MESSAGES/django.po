@@ -110,3 +110,6 @@ msgstr "Registrations"
 
 msgid "sponsors_thanks"
 msgstr "Thanks to our sponsors!"
+
+msgid "rewards"
+msgstr "Rewards"

@@ -111,3 +111,6 @@ msgstr "Inscriptions"
 
 msgid "sponsors_thanks"
 msgstr "Merci à nos sponsors!"
+
+msgid "rewards"
+msgstr "Récompenses"
