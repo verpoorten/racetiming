@@ -14,5 +14,8 @@ urlpatterns = (
     url(r'^registration/$', jogging.registration, name='registration'),
     url(r'^registration/add/$', registration.add_registration, name='add_registration'),
     url(r'^sponsors/$', jogging.sponsors, name='sponsors'),
+    url(r'^ranking_ultra/$', jogging.ranking_ultra, name='ranking_ultra'),
+    url(r'^pictures/$', jogging.pictures, name='pictures'),
+
 
 )

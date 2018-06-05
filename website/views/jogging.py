@@ -74,8 +74,21 @@ def get_common_data():
             'default_language': settings.LANGUAGE_CODE,
             }
 
+
 def sponsors(request):
     context = {'form': RunnerInlineForm()}
     context.update(get_common_data())
     return render(request, "sponsors.html",
+                  context)
+
+
+def ranking_ultra(request):
+    context = get_common_data()
+    return render(request, "ranking.html",
+                  context)
+
+
+def pictures(request):
+    context = get_common_data()
+    return render(request, "pictures.html",
                   context)

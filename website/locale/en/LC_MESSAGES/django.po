@@ -113,3 +113,7 @@ msgstr "Thanks to our sponsors!"
 
 msgid "rewards"
 msgstr "Rewards"
+
+msgid "pictures"
+msgstr "Pictures"
+

@@ -1,0 +1,42 @@
+{% extends "layout_website.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% comment "License" %}
+    * Racetiming is an application designed to manage ranking during running
+    * competition.
+    *
+    * Copyright (C) 2018 Leïla Verpoorten
+    *
+    * This program is free software: you can redistribute it and/or modify
+    * it under the terms of the GNU General Public License as published by
+    * the Free Software Foundation, either version 3 of the License, or
+    * (at your option) any later version.
+    *
+    * This program is distributed in the hope that it will be useful,
+    * but WITHOUT ANY WARRANTY; without even the implied warranty of
+    * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    * GNU General Public License for more details.
+    *
+    * A copy of this license - GNU General Public License - is available
+    * at the root of the source code of this program.  If not,
+    * see http://www.gnu.org/licenses/.
+{% endcomment %}
+
+{% block header %}
+
+{% endblock %}
+{% block content %}
+    <br>
+    <div class="page-header">
+        <h2>{% trans 'ranking' %}</h2>
+    </div>
+    <br>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <p>Des photos sont disponibles sur <a href="https://www.facebook.com/media/set/?set=a.421422824997922.1073741834.100013906243953&type=1&l=83216da7e9" target="_blank">Facebook</a>.</p>
+            <p>Ainsi que sur <a href="https://photos.app.goo.gl/tuRPgCQ1TOQaMkzs2" target="_blank">Google</a></p>
+
+        </div>
+    </div>
+{% endblock %}

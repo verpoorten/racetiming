@@ -91,10 +91,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden"><a href="#page-top"></a></li>
-                    {% if races_preregistration %}
-                        <!--<li><a class="page-scroll" href="{% url 'registration' %}">{% trans 'registrations' %}</a></li>-->
+                    <!--{% if races_preregistration %}
+                        <li><a class="page-scroll" href="{% url 'registration' %}">{% trans 'registrations' %}</a></li>
                         <li><a class="page-scroll" href="{% url 'pre_registration' %}">{% trans 'pre-registration' %}</a></li>
-                    {% endif %}
+                    {% endif %}-->
                     {% if races_ended %}
                     <li class="dropdown" style="visibility: hidden; display: none;">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -109,7 +109,9 @@
                         </ul>
                         </li>
                     {% endif %}
-                    <li><a class="page-scroll" href="{% url 'information' %}">{% trans 'information' %}</a></li>
+                    <li><a class="page-scroll" href="{% url 'ranking_ultra' %}">{% trans 'ranking' %}</a></li>
+                    <li><a class="page-scroll" href="{% url 'pictures' %}">{% trans 'pictures' %}</a></li>
+                    <li style="visibility:hidden;display:none;"><a class="page-scroll" href="{% url 'information' %}">{% trans 'information' %}</a></li>
                     <li style="visibility:hidden;display:none;"><a class="page-scroll" href="{% url 'rules' %}">{% trans 'rules' %}</a></li>
                     <li><a class="page-scroll" href="{% url 'contact' %}">{% trans 'contact' %}</a></li>
                     <li><a class="page-scroll" href="{% url 'sponsors' %}">Sponsors</a></li>
