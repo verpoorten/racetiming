@@ -1,0 +1,84 @@
+{% extends "layout_website.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% comment "License" %}
+* Racetiming is an application designed to manage ranking during running
+* competition.
+*
+* Copyright (C) 2018 Leïla Verpoorten
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* A copy of this license - GNU General Public License - is available
+* at the root of the source code of this program.  If not,
+* see http://www.gnu.org/licenses/.
+{% endcomment %}
+
+{% block header %}
+
+{% endblock %}
+{% block content %}
+<br>
+<div class="page-header">
+    <h2>{% trans 'races' %}</h2>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Distance</th>
+                <th>Heure de départ</th>
+                <th>Prix prévente</th>
+                <th>Prix le jour de la course</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Kid's run +/- 1km</td>
+                <td>17:30</td>
+                <td colspan="2">Gratuit</td>
+            </tr>
+            <tr>
+                <td>Course en équipe</td>
+                <td>17:45</td>
+                <td>15 euros</td>
+                <td>20 euros</td>
+            </tr>
+            <tr>
+                <td>5 km</td>
+                <td>18:15</td>
+                <td>4 euros</td>
+                <td>6 euros</td>
+            </tr>
+            <tr>
+                <td>10 km</td>
+                <td>18:00</td>
+                <td>6 euros</td>
+                <td>8 euros</td>
+            </tr>
+            </tbody>
+
+        </table>
+        <br>
+        Inscriptions auprès de <a href="http://www.ultratiming.be/eole-run-2019/">Ultratiming</a>
+        <br>
+        <br>
+        Sécrétariat ouvert dès 16h00
+        <br>
+        <br>
+        Consigne, château gonflable, pas de douche.
+
+    </div>
+</div>
+{% endblock %}

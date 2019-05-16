@@ -92,3 +92,8 @@ def pictures(request):
     context = get_common_data()
     return render(request, "pictures.html",
                   context)
+
+def races(request):
+    context = get_common_data()
+    return render(request, "races.html",
+                  context)
