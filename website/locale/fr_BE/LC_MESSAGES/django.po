@@ -86,7 +86,7 @@ msgid "discover"
 msgstr "Découvrir"
 
 msgid "intro_lead"
-msgstr "Bienvenue à la 1ière édition de l'Eole Run!"
+msgstr "Bienvenue à la 2ième édition de l'Eole Run!"
 
 msgid "intro_heading"
 msgstr "Les sportifs attaquent Lisogne"
