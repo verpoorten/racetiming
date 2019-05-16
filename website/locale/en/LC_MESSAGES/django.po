@@ -79,7 +79,7 @@ msgid "organization"
 msgstr "Organization"
 
 msgid "app_description"
-msgstr "02 june 2018, 1rst edition of the Eole Run"
+msgstr "01 june 2019, 2nd edition of the Eole Run"
 
 msgid "discover"
 msgstr "Discover"
