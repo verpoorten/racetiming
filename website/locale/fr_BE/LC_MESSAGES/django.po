@@ -80,7 +80,7 @@ msgid "organization"
 msgstr "Organisation"
 
 msgid "app_description"
-msgstr "Samedi 01 juin 2019, 2ème édition de l'Eole Run"
+msgstr "Samedi 06 juin 2019, 2ème édition de l'Eole Run"
 
 msgid "discover"
 msgstr "Découvrir"
