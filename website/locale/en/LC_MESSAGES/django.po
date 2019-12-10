@@ -85,7 +85,7 @@ msgid "discover"
 msgstr "Discover"
 
 msgid "intro_lead"
-msgstr "Welcome to the second edition of the Eole Run!"
+msgstr "Welcome to the third edition of the Eole Run!"
 
 msgid "intro_heading"
 msgstr "Runners attack Lisogne"
